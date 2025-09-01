@@ -1,0 +1,6 @@
+framework module CYSwiftExtension {
+  umbrella header "CYSwiftExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}
