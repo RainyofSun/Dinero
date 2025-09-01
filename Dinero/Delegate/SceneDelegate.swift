@@ -6,6 +6,8 @@
 //
 
 import UIKit
+@_exported import CYSwiftExtension
+import Toast
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -17,6 +19,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        APPNetRequestURLConfig.setNetworkDebugRequestURL("http://47.251.169.113/irectioner/", releaseUrl: "")
+        #if DEBUG
+        APPCocoaLog.shared.registe(with: EnvType.other)
+        #else
+        APPCocoaLog.shared.registe(with: EnvType.prod)
+        #endif
+        DeviceNetObserver.shared.StartNetworkStatusListener()
+        DeviceAuthorizationTool.authorization()
+        APPLanguageInsTool.setLocalLanguage(InterbationalLanguage.English)
+        buildRootVC()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -29,6 +42,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: {
+            self.deviceAuthoskdawidkm()
+        })
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
@@ -50,3 +66,89 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+extension SceneDelegate {
+    func setNetRequestPublicParams() {
+        let public_params: APPPublicParamsKey = APPPublicParamsKey()
+        public_params.appVersionKey = "demographic"
+        public_params.deviceNameKey = "equivalent"
+        public_params.idfvKey = "city"
+        public_params.idfaKey = "mullainathan"
+        public_params.loginTokenKey = "got"
+        public_params.systemVersionKey = "millennium"
+        public_params.countryCodeKey = "indicators"
+    }
+    
+    func buildRootVC() {
+        CSToastManager.setDefaultPosition(CSToastPositionCenter)
+        
+        self.window?.backgroundColor = .white
+        let piedhksVC = StartFlashViewController()
+        piedhksVC.sDelegate = self
+        self.window?.rootViewController = piedhksVC
+        self.window?.makeKeyAndVisible()
+    }
+    
+    func showAllFonts(){
+        let familyNames = UIFont.familyNames
+        
+        var index:Int = 0
+        
+        for familyName in familyNames {
+            
+            let fontNames = UIFont.fontNames(forFamilyName: familyName as String)
+            print("------- 字体家族 -------- \(familyName)")
+            for fontName in fontNames
+            {
+                index += 1
+                
+                print("第 \(index) 个字体，字体font名称：\(fontName)")
+            }
+        }
+    }
+    
+    func deviceAuthoskdawidkm() {
+        DeviceAuthorizationTool.authorization().requestDeviceIDFAAuthrization { _ in
+            
+        }
+        
+        DeviceAuthorizationTool.authorization().requestDeviceLocationAuthrization(WhenInUse)
+        
+        if DeviceAuthorizationTool.authorization().locationAuthorization() == Authorized || DeviceAuthorizationTool.authorization().locationAuthorization() == Limited {
+            DeviceAuthorizationTool.authorization().startDeviceLocation()
+            if GlobalCommonFile.shared.isAppInitializationSuccess {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+                    APPCocoaLog.debug("定位埋点上报 ----------")
+                })
+            } else {
+                
+            }
+        }
+        
+        if DeviceAuthorizationTool.authorization().attTrackingStatus() == .authorized {
+            if GlobalCommonFile.shared.isAppInitializationSuccess {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+                    APPCocoaLog.debug("ATT 埋点上报 ----------")
+                })
+            } else {
+                
+            }
+        }
+        
+        if GlobalCommonFile.shared.isAppInitializationSuccess {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+                APPCocoaLog.debug("设备信息 埋点上报 ----------")
+            })
+        }
+    }
+}
+
+extension SceneDelegate: FlashProtocol {
+    func didMissFlashViews() {
+        let trans = CATransition()
+        trans.duration = 0.5
+        trans.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        trans.type = .fade
+        self.window?.layer.add(trans, forKey: nil)
+        self.window?.rootViewController = BasicTabbarViewController()
+    }
+}

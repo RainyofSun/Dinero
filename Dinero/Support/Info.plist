@@ -11,8 +11,16 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string></string>
-		<string></string>
+		<string>Inter-Black-3.otf</string>
+		<string>Inter-Bold-4.otf</string>
+		<string>Inter-ExtraBold-5.otf</string>
+		<string>Inter-ExtraLight-6.otf</string>
+		<string>Inter-Light-7.otf</string>
+		<string>Inter-Medium-8.otf</string>
+		<string>Inter-Regular-9.otf</string>
+		<string>Inter-SemiBold-10.otf</string>
+		<string>Inter-Thin-11.otf</string>
+		<string>Inter-var-2.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
