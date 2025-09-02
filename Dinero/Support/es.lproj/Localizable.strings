@@ -10,3 +10,62 @@
 "guide_otwo"="Con solo un clic en tu teléfono, ¡los fondos se acreditarán en tu cuenta! No se requiere garantía y el desembolso es rápido.";
 "guide_next"="Siguiente paso";
 "guide_com"="Inicio";
+
+"login_text1"="¡Bienvenido a DineroFuerza!";
+"login_phone"="Número de teléfono";
+"login_phone_p"="Introduzca su número de teléfono";
+"login_v_code"="Código de verificación";
+"login_v_code_btn"="Obtener código";
+"login_v_voice"="Verificación de voz";
+"login_privicy"="He leído y acepto el ";
+"login_ppp"="Acuerdo de privacidad.";
+"login_btn"="Iniciar sesión";
+
+"order_tip"="Aquí encontrará una visualización centralizada de toda la información sobre sus pedidos completados, en curso o vencidos.";
+"order_repay"="Reembolso";
+"order_apply"="Aplicar";
+"order_finis"="Terminado";
+"order_empty"="Aún no tienes ninguna información sobre pedidos. Ve a la página de inicio y envía tu solicitud ahora.";
+
+"mine_tip"="Con asistencia profesional las 24 horas del día, los 7 días de la semana, se resuelven todos los problemas, lo que le permite estar tranquilo y sin preocupaciones.";
+"mine_fun"="Más funciones";
+
+"setting_tip"="Pide prestado y devuelve con flexibilidad, con un volumen de negocio flexible: tu gestor financiero personal.";
+"setting_cance"="Cancelación de la cuenta";
+"setting_lot"="Cerrar sesión";
+"setting_lot_alert"="¡Tendrás tu préstamo en un santiamén! ¿Seguro que quieres salir?";
+"setting_confirm"="Confirmar";
+
+"cancel_wel_tip"="Bienvenido~ "
+"ccancel_del"="Eliminar cuenta";
+"cancel_del1"="Eliminar tu cuenta provocará la pérdida permanente de los siguientes datos y funciones:";
+"cancel_tip1"="Información personal: Esto incluye su perfil, preferencias y otros datos personales.";
+"cancel_tip2"="Historial: Todos los registros históricos serán eliminados y no podrán recuperarse.";
+"cancel_tip3"="Permisos de la aplicación: Ya no podrás utilizar ninguna de las funciones y servicios de esta aplicación.";
+"cancel_priss"="He leído y acepto lo anterior.";
+
+"produc_tip"="Estamos aquí para ayudarte a hacer realidad tus sueños en cada viaje: emprendimiento, educación y viajes.";
+"product_tip2"="Lista de certificaciones";
+
+"auth_btn"="Siguiente paso";
+"auth_un"="Sin verificar";
+"auth_com"="Certificado";
+
+"camera_tip1"="Para garantizar una revisión fluida, preste atención a los siguientes puntos al tomar fotos:";
+"camera_tip2"="Coloque las cuatro esquinas de su tarjeta de identificación dentro del marco de la foto y tome una foto completa.";
+"camera_tip3"="El texto debe ser claramente visible, evitando que se vea borroso y manteniéndolo alejado de lugares con mucha luz o muy oscuros.";
+"camera_tip4"="Debe ser un documento de identidad reconocido por el Estado y debe pertenecer a la propia persona.";
+"camera_tip5"="Mantenga la lente limpia, sujétela con ambas manos frente a su rostro y evite sacudirla.";
+"camera_tip6"="Quítese el sombrero, las gafas y otros objetos para evitar que se le tape la cara.";
+"camera_tip7"="Mantenga una iluminación suficiente y evite tanto la oscuridad como la luz solar directa.";
+
+"info_confirm_tip"="Por favor, confirme la información.";
+"info_confirm_name"="Nombre completo";
+"info_confirm_id"="Número de identificación";
+"info_confirm_bir"="Cumpleaños";
+"info_confirm_bto"="Por favor, comprueba que la información de tu identificación es correcta, ya que una vez enviada no se podrá modificar.";
+
+"address_tip"="Por favor seleccione una dirección";
+"address_sel"="Por favor elige";
+
+"time_tip"="Por favor seleccione una hora";
