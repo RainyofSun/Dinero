@@ -20,6 +20,7 @@
 #import "APPNetRequestManager.h"
 #import "APPNetRequestURLConfig.h"
 #import "APPNetResponseModel.h"
+#import "APPNetResponseParsingConfig.h"
 #import "APPPublicParams.h"
 #import "APPURLMacroHeader.h"
 #import "NSString+StringExtension.h"

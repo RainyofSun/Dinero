@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         APPNetRequestURLConfig.setNetworkDebugRequestURL("http://47.251.169.113/irectioner/", releaseUrl: "")
+        APPNetResponseParsingConfig.setParsingConfig("tell", service: "org", data: "unstats")
         #if DEBUG
         APPCocoaLog.shared.registe(with: EnvType.other)
         #else

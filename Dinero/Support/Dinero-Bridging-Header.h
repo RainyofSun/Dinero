@@ -12,6 +12,7 @@
 #import <CYSwiftExtension/APPNetResponseModel.h>
 #import <CYSwiftExtension/APPNetRequestManager.h>
 #import <CYSwiftExtension/APPNetRequestURLConfig.h>
+#import <CYSwiftExtension/APPNetResponseParsingConfig.h>
 #import <CYSwiftExtension/NSString+StringExtension.h>
 #import <CYSwiftExtension/UIDevice+DeviceExtension.h>
 #import <CYSwiftExtension/UIViewController+ViewControllerExtension.h>

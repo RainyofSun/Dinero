@@ -7,3 +7,16 @@
 */
 
 "start_try"="Try again";
+"guide_one"="Borrowing money, as fast as lightning! 3 minutes to arrive, to solve your urgent needs";
+"guide_otwo"="With just a click on your phone, the funds will be credited to your account! No collateral required, with quick disbursement.";
+"guide_next"="Next step";
+"guide_com"="Start";
+
+"login_text1"="Welcome to DineroFuerza！";
+"login_phone"="Phone number";
+"login_phone_p"="Enter your phone number";
+"login_v_code"="Verification code";
+"login_v_code_btn"="Get code";
+"login_v_voice"="Voice verification";
+"login_privicy"="I have read and agree Privacy Agreement";
+"login_btn"="Login";
