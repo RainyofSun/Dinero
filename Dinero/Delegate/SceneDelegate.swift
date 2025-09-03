@@ -119,6 +119,7 @@ extension SceneDelegate {
             if GlobalCommonFile.shared.isAppInitializationSuccess {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
                     APPCocoaLog.debug("定位埋点上报 ----------")
+                    BuryShuJuTool.shujuLocationReportswks()
                 })
             } else {
                 
@@ -129,6 +130,7 @@ extension SceneDelegate {
             if GlobalCommonFile.shared.isAppInitializationSuccess {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
                     APPCocoaLog.debug("ATT 埋点上报 ----------")
+                    BuryShuJuTool.IDFAAndIDFVReport()
                 })
             } else {
                 
@@ -138,6 +140,7 @@ extension SceneDelegate {
         if GlobalCommonFile.shared.isAppInitializationSuccess {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
                 APPCocoaLog.debug("设备信息 埋点上报 ----------")
+                BuryShuJuTool.deviceInfoReport()
             })
         }
     }

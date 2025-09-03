@@ -14,6 +14,7 @@ extension UILabel {
         label.font = font
         label.textColor = t_color
         label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }
     
@@ -23,6 +24,7 @@ extension UILabel {
         label.font = font
         label.textColor = t_color
         label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }
 }

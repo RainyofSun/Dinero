@@ -17,6 +17,13 @@ class BasicViewController: UIViewController {
         return view
     }()
     
+    private(set) lazy var gradientView: GradientColorView = {
+        let view = GradientColorView()
+        view.buildGradientWithColors(gradientColors: [Primary_Color1, Primary_Color2], gradientStyle: GradientDirectionStyle.topToBottom)
+        view.isHidden = true
+        return view
+    }()
+    
     open var buryingStartTime: String?
     
     override func viewDidLoad() {
@@ -35,10 +42,15 @@ class BasicViewController: UIViewController {
     }
 
     public func buildPageUI() {
+        self.view.addSubview(self.gradientView)
         self.view.addSubview(self.basicScrollContentView)
     }
     
     public func layoutPageViews() {
+        self.gradientView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         if let _childrenVC = self.navigationController?.children, _childrenVC.count > 1 {
             self.basicScrollContentView.snp.makeConstraints { make in
                 make.horizontalEdges.equalToSuperview()

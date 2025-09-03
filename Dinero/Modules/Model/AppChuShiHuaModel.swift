@@ -29,3 +29,7 @@ class FacebookData: BasicResponseModel {
     // FacebookClientToke
     var max: String?
 }
+
+class MutableNetURLModel: BasicResponseModel {
+    var cp: String?
+}

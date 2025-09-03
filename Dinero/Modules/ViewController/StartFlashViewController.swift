@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import CYSwiftExtension
 
 protocol FlashProtocol: AnyObject {
     func didMissFlashViews()
@@ -17,6 +19,8 @@ class StartFlashViewController: BasicViewController {
     
     private lazy var contentImgView = UIImageView(image: UIImage(named: "startFass"))
     private lazy var tryBtn = UIButton.buildGradientLoadingButton(APPLanguageInsTool.loadLanguage("start_try"))
+    private lazy var firstCell = FlashCellView(frame: CGRectZero)
+    private lazy var secondCell = FlashCellView(frame: CGRectZero, isFirst: false)
     
     override func buildPageUI() {
      
@@ -27,7 +31,13 @@ class StartFlashViewController: BasicViewController {
         self.view.addSubview(self.contentImgView)
         self.contentImgView.addSubview(self.tryBtn)
         
+        self.basicScrollContentView.isPagingEnabled = true
+        self.basicScrollContentView.isHidden = true
+        self.basicScrollContentView.addSubview(self.firstCell)
+        self.basicScrollContentView.addSubview(self.secondCell)
+        
         self.tryBtn.addTarget(self, action: #selector(letusTryAgain(sender: )), for: UIControl.Event.touchUpInside)
+        NotificationCenter.default.addObserver(self, selector: #selector(wangluoBianChange(sender: )), name: NSNotification.Name(APPLICATION_NET_CHANGE), object: nil)
     }
     
     override func layoutPageViews() {
@@ -41,6 +51,17 @@ class StartFlashViewController: BasicViewController {
             make.height.equalTo(50)
             make.horizontalEdges.equalToSuperview().inset(50)
         }
+        
+        self.firstCell.snp.makeConstraints { make in
+            make.left.top.bottom.equalToSuperview()
+            make.width.equalTo(self.view.width)
+        }
+        
+        self.secondCell.snp.makeConstraints { make in
+            make.left.equalTo(self.firstCell.snp.right)
+            make.top.size.equalTo(self.firstCell)
+            make.right.equalToSuperview()
+        }
     }
     
     override func pageNetRequest() {
@@ -49,15 +70,96 @@ class StartFlashViewController: BasicViewController {
         let appYuYan: String = UIDevice.jk.appLanguage
         let useVPN = UIDevice.isVPNEnabled() ? "1" : "0"
         
-        APPNetRequestManager.afnReqeustType(NetworkRequestConfig.defaultRequestConfig("immediatelying/associations", requestParams: ["olof": useProcy, "associations": appYuYan, "rooth": useVPN])) { task, res in
-            APPCocoaLog.debug("sssssss")
-        } failure: { task, error in
+        APPNetRequestManager.afnReqeustType(NetworkRequestConfig.defaultRequestConfig("immediatelying/associations", requestParams: ["olof": useProcy, "associations": appYuYan, "rooth": useVPN])) {[weak self] (task: URLSessionDataTask, res: APPSuccessResponse) in
+            guard let _dict = res.jsonDict, let _model = AppChuShiHuaModel.model(with: _dict) else {
+                return
+            }
             
+            GlobalCommonFile.shared.isAppInitializationSuccess = true
+            GlobalCommonFile.shared.privacyURL = _model.sdg
+            
+            if _model.indicators != -1 {
+                GlobalCommonFile.shared.countryCode = _model.indicators
+                APPPublicParams.request().appUpdateLoginToken(nil, withContryCode: "\(_model.indicators)")
+                // 设置多语言
+                APPLanguageInsTool.setLocalLanguage(InterbationalLanguage.init(rawValue: _model.indicators) ?? InterbationalLanguage.English)
+            }
+            
+            if _model.indicators == 2 && DeviceAuthorizationTool.authorization().locationAuthorization() != Authorized && DeviceAuthorizationTool.authorization().locationAuthorization() != Limited {
+                GlobalCommonFile.shared.showPositionAlert = true
+            }
+            
+            #if DEBUG
+            #else
+            if let _fa = _model.original {
+                self?.FacebookChuShiHua(_fa)
+            }
+            #endif
+            
+            if APPInfomationCache.applicationFirstInstall() {
+                self?.tryBtn.isHidden = false
+                self?.tryBtn.setTitle(APPLanguageInsTool.loadLanguage("auth_btn"), for: UIControl.State.normal)
+                self?.firstCell.refreshText(true)
+                self?.secondCell.refreshText(false)
+            } else {
+                self?.sDelegate?.didMissFlashViews()
+            }
+        } failure: {[weak self] task, error in
+            self?.tryBtn.isHidden = false
+            self?.mutableNetURLRequest()
         }
-
     }
     
     @objc func letusTryAgain(sender: APPActivityButton) {
-        self.sDelegate?.didMissFlashViews()
+        if self.basicScrollContentView.isHidden {
+            APPNetRequestURLConfig.clearDomainURLCache()
+            self.pageNetRequest()
+        } else {
+            if self.basicScrollContentView.contentOffset == .zero {
+                self.basicScrollContentView.setContentOffset(CGPoint(x: jk_kScreenW, y: 0), animated: true)
+                self.tryBtn.setTitle(APPLanguageInsTool.loadLanguage("guide_com"), for: UIControl.State.normal)
+            } else {
+                self.sDelegate?.didMissFlashViews()
+            }
+        }
+    }
+    
+    @objc func wangluoBianChange(sender: NSNotification) {
+        if let _net_state = sender.object as? DeviceNetObserver.NetworkStatus, _net_state != .NetworkStatus_NoNet, APPInfomationCache.applicationFirstInstall() {
+            // 第一次安装时，等到网络授权之后，再重新请求初始化
+            self.pageNetRequest()
+            // 关闭网络探测
+            DeviceNetObserver.shared.StopNetworkObserverListener()
+            NotificationCenter.default.removeObserver(self)
+        }
+    }
+}
+
+private extension StartFlashViewController {
+    func FacebookChuShiHua(_ fbModel: FacebookData) {
+        Settings.shared.appID = fbModel.cfo
+        Settings.shared.displayName = fbModel.remedy
+        Settings.shared.clientToken = fbModel.max
+        Settings.shared.appURLSchemeSuffix = fbModel.archived
+        Settings.shared.isAutoLogAppEventsEnabled = true
+        ApplicationDelegate.shared.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
+    }
+    
+    func mutableNetURLRequest() {
+        let config: NetworkRequestConfig = NetworkRequestConfig.defaultRequestConfig(ke_bian_service_address + ke_bina_service_domain, requestParams: nil)
+        config.requestType = .download
+        APPNetRequestManager.afnReqeustType(config) { [weak self] (task :URLSessionDataTask, res: APPSuccessResponse) in
+            guard let _str = res.responseMsg, let _do_models = NSArray.modelArray(with: MutableNetURLModel.self, json: _str) as? [MutableNetURLModel] else {
+                return
+            }
+            
+            for item in _do_models {
+                if let _url = item.cp, APPNetRequestURLConfig.reloadNetworkRequestDomainURL(_url) {
+                    APPNetRequestConfig.reloadNetworkRequestURL()
+                    self?.pageNetRequest()
+                    break
+                }
+            }
+        }
     }
 }
