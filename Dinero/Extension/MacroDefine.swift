@@ -11,6 +11,8 @@ let LAYOUT_MIN_UNIT: CGFloat = 4.0
 
 let Primary_Color1: UIColor = UIColor.hexStringColor(hexString: "#F23055")
 let Primary_Color2: UIColor = UIColor.hexStringColor(hexString: "#FFD06C")
+let Primary_Color_red: UIColor = UIColor.hexStringColor(hexString: "#D40028")
+let Primary_Color_Black: UIColor = UIColor.hexStringColor(hexString: "#333333")
 
 enum TongJiEventUploadStyle: String {
     case TJ_Login = "1"

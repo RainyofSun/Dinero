@@ -23,16 +23,18 @@ class StartFlashViewController: BasicViewController {
     private lazy var secondCell = FlashCellView(frame: CGRectZero, isFirst: false)
     
     override func buildPageUI() {
-     
+        super.buildPageUI()
+        
         self.tryBtn.isHidden = true
-        self.contentImgView.isUserInteractionEnabled = true
         self.tryBtn.corner(16)
         
         self.view.addSubview(self.contentImgView)
-        self.contentImgView.addSubview(self.tryBtn)
+        self.view.addSubview(self.tryBtn)
         
         self.basicScrollContentView.isPagingEnabled = true
         self.basicScrollContentView.isHidden = true
+        self.basicScrollContentView.isScrollEnabled = false
+        
         self.basicScrollContentView.addSubview(self.firstCell)
         self.basicScrollContentView.addSubview(self.secondCell)
         
@@ -41,6 +43,11 @@ class StartFlashViewController: BasicViewController {
     }
     
     override func layoutPageViews() {
+        super.layoutPageViews()
+        
+        self.basicScrollContentView.snp.remakeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
         self.contentImgView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -53,8 +60,8 @@ class StartFlashViewController: BasicViewController {
         }
         
         self.firstCell.snp.makeConstraints { make in
-            make.left.top.bottom.equalToSuperview()
-            make.width.equalTo(self.view.width)
+            make.left.top.equalToSuperview()
+            make.size.equalTo(self.view.size)
         }
         
         self.secondCell.snp.makeConstraints { make in
@@ -97,6 +104,8 @@ class StartFlashViewController: BasicViewController {
             #endif
             
             if APPInfomationCache.applicationFirstInstall() {
+                self?.basicScrollContentView.isHidden = false
+                self?.contentImgView.isHidden = true
                 self?.tryBtn.isHidden = false
                 self?.tryBtn.setTitle(APPLanguageInsTool.loadLanguage("auth_btn"), for: UIControl.State.normal)
                 self?.firstCell.refreshText(true)

@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         APPNetRequestURLConfig.setNetworkDebugRequestURL("http://47.251.169.113/irectioner/", releaseUrl: "")
         APPNetResponseParsingConfig.setParsingConfig("tell", service: "org", data: "unstats")
+        setNetRequestPublicParams()
         #if DEBUG
         APPCocoaLog.shared.registe(with: EnvType.other)
         #else
@@ -77,6 +78,8 @@ extension SceneDelegate {
         public_params.loginTokenKey = "got"
         public_params.systemVersionKey = "millennium"
         public_params.countryCodeKey = "indicators"
+        
+        APPPublicParams.request().appCommonParamsKeyModel(public_params)
     }
     
     func buildRootVC() {

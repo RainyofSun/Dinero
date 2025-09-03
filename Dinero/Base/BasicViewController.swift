@@ -29,7 +29,6 @@ class BasicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .white
         self.buryingStartTime = Date().jk.dateToTimeStamp()
         
         self.fd_interactivePopDisabled = false
@@ -42,6 +41,7 @@ class BasicViewController: UIViewController {
     }
 
     public func buildPageUI() {
+        self.view.backgroundColor = .white
         self.view.addSubview(self.gradientView)
         self.view.addSubview(self.basicScrollContentView)
     }

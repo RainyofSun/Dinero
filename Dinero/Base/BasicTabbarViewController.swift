@@ -82,7 +82,7 @@ extension BasicTabbarViewController: BasicTabbarProtocol {
 @objc private extension BasicTabbarViewController {
     func userNeddRelogins() {
         let logsjNac: BasicNavigationViewController = BasicNavigationViewController(rootViewController: LogiscskViewController())
-        logsjNac.modalPresentationStyle = .fullScreen
+        logsjNac.modalPresentationStyle = .overFullScreen
         self.present(logsjNac, animated: true)
     }
 }

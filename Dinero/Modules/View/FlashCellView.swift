@@ -16,7 +16,8 @@ class FlashCellView: UIView {
     }()
     
     private lazy var tipImageView: UIImageView = UIImageView(image: UIImage(named: "guide_one"))
-    private lazy var tipLab: UILabel = UILabel.buildNormalTextLabel(APPLanguageInsTool.loadLanguage("guide_one"), t_color: UIColor.black, font: UIFont.systemFont(ofSize: 16))
+    private lazy var tipLab: UILabel = UILabel.buildNormalTextLabel(APPLanguageInsTool.loadLanguage("guide_one"), t_color: UIColor.black, font: UIFont.interFont(size: 16, fontStyle: InterFontWeight.Regular_SemiBold_Italic))
+                                                                    
     private lazy var lineImageView: UIImageView = UIImageView(image: UIImage(named: "guide_one_line"))
     
     init(frame: CGRect, isFirst: Bool = true) {
@@ -24,7 +25,7 @@ class FlashCellView: UIView {
         
         if !isFirst {
             self.tipImageView.image = UIImage(named: "guide_two")
-            self.tipLab.text = APPLanguageInsTool.loadLanguage("guide_two")
+            self.tipLab.text = APPLanguageInsTool.loadLanguage("guide_otwo")
             self.lineImageView.image = UIImage(named: "guide_two_line")
         }
         
@@ -58,7 +59,7 @@ class FlashCellView: UIView {
     }
     
     func refreshText(_ isFirst: Bool) {
-        self.tipLab.text = APPLanguageInsTool.loadLanguage(isFirst ? "guide_one" : "guide_two")
+        self.tipLab.text = APPLanguageInsTool.loadLanguage(isFirst ? "guide_one" : "guide_otwo")
     }
     
 }

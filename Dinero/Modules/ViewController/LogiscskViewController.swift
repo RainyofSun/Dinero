@@ -9,21 +9,16 @@ import UIKit
 
 class LogiscskViewController: BasicViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    private lazy var presentView: LoginPresnetawkchView = LoginPresnetawkchView(frame: CGRectZero)
+    
+    override func buildPageUI() {
+        self.presentView.f_view_controller = self
+        self.view .addSubview(self.presentView)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func layoutPageViews() {
+        self.presentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
-    */
-
 }
