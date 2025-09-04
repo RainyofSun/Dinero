@@ -1,14 +1,25 @@
 //
-//  ThirdMineswlViewController.swift
+//  ChanPinProdViewController.swift
 //  Dinero
 //
-//  Created by 一刻 on 2025/9/1.
+//  Created by 一刻 on 2025/9/4.
 //
 
 import UIKit
 
-class ThirdMineswlViewController: BasicViewController, AutoHiddenNavigationBar {
+class ChanPinProdViewController: BasicViewController {
 
+    private var id_number: String?
+    
+    init(withCommodityIDNumber idNumber: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.id_number = idNumber
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

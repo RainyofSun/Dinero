@@ -32,6 +32,10 @@ class BasicTabbarViewController: UITabBarController {
             }
         }
     }
+    
+    func changeBarColor(color: UIColor) {
+        self.custom_bar?.backgroundColor = color
+    }
 }
 
 private extension BasicTabbarViewController {

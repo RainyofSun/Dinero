@@ -7,7 +7,7 @@
 
 import UIKit
 @_exported import CYSwiftExtension
-import Toast
+@_exported import Toast
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

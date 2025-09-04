@@ -1,13 +1,13 @@
 //
-//  ThirdMineswlViewController.swift
+//  SettingkowlsViewController.swift
 //  Dinero
 //
-//  Created by 一刻 on 2025/9/1.
+//  Created by 一刻 on 2025/9/4.
 //
 
 import UIKit
 
-class ThirdMineswlViewController: BasicViewController, AutoHiddenNavigationBar {
+class SettingkowlsViewController: BasicViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

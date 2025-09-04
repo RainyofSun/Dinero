@@ -24,7 +24,7 @@ class BasicPresentView: UIView {
         return btn
     }()
     
-    private(set) lazy var confirmBtn: UIButton = UIButton.buildGradientLoadingButton(APPLanguageInsTool.loadLanguage("setting_confirm"))
+    private(set) lazy var confirmBtn: APPActivityButton = APPActivityButton.buildGradientLoadingButton(APPLanguageInsTool.loadLanguage("setting_confirm"))
     
     private(set) lazy var titleLab: UILabel = UILabel.buildNormalTextLabel("", t_color: UIColor.hexStringColor(hexString: "#D40028"), font: UIFont.interFont(size: 20, fontStyle: InterFontWeight.Medium))
     
@@ -44,7 +44,7 @@ class BasicPresentView: UIView {
     
     func buildPresentView() {
         
-        self.closeBtn.addTarget(self, action: #selector(closePresentView(sender: )), for: UIControl.Event.touchUpInside)
+        self.closeBtn.addTarget(self, action: #selector(closePresentView), for: UIControl.Event.touchUpInside)
         self.confirmBtn.addTarget(self, action: #selector(confirmClick(sender: )), for: UIControl.Event.touchUpInside)
         self.confirmBtn.corner(16)
         self.addSubview(self.closeBtn)
@@ -77,11 +77,11 @@ class BasicPresentView: UIView {
         }
     }
     
-    @objc func closePresentView(sender: UIButton) {
+    @objc func closePresentView() {
         self.dismissPop()
     }
     
-    @objc func confirmClick(sender: UIButton) {
+    @objc func confirmClick(sender: APPActivityButton) {
         
     }
     

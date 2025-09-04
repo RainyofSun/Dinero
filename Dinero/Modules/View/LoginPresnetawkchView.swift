@@ -9,12 +9,12 @@ import UIKit
 
 class LoginPresnetawkchView: BasicPresentView {
 
-    weak open var f_view_controller: UIViewController?
+    weak open var f_view_controller: LogiscskViewController?
     private lazy var dotLab12: dotTextLabel = dotTextLabel(frame: CGRectZero)
     private lazy var dotLab3: dotTextLabel = dotTextLabel(frame: CGRectZero)
     private lazy var phoneTefiled: ForbidActionTextFiled = ForbidActionTextFiled(frame: CGRectZero)
     private lazy var codeTefiled: ForbidActionTextFiled = ForbidActionTextFiled(frame: CGRectZero)
-    private lazy var codeBtn: APPCodeTimerButton = APPCodeTimerButton(frame: CGRectZero)
+    private lazy var codeBtn: APPCodeTimerButton = APPCodeTimerButton(frame: CGRect(origin: CGPointZero, size: CGSizeMake(150, 50)))
     private lazy var voiceCodeBtn: UIButton = {
         let view = UIButton(type: UIButton.ButtonType.custom)
         var attris = NSAttributedString(string: APPLanguageInsTool.loadLanguage("login_v_voice"), attributes: [.foregroundColor: UIColor.hexStringColor(hexString: "#FF9E00"), .font: UIFont.systemFont(ofSize: 16)])
@@ -52,11 +52,14 @@ class LoginPresnetawkchView: BasicPresentView {
         self.codeTefiled.corner(22)
         self.codeTefiled.keyboardType = .numberPad
         
+        self.codeTefiled.rightView = self.codeBtn
+        self.codeTefiled.rightViewMode = .always
+        
         self.yinSiView.setAgreeButton(UIImage(named: "login_disagree")!, selectedImg: UIImage(named: "login_agree")!)
         let tshdk1: NSAttributedString = NSAttributedString(string: APPLanguageInsTool.loadLanguage("login_ppp"), attributes: [.foregroundColor: Primary_Color_red, .font: UIFont.systemFont(ofSize: 14)])
         let tksm2: NSAttributedString = NSAttributedString(string: APPLanguageInsTool.loadLanguage("login_privicy"), attributes: [.foregroundColor: Primary_Color_Black, .font: UIFont.systemFont(ofSize: 14)])
         
-        self.yinSiView.setProtocol(tshdk1, protocolPrefix: tksm2, defaultSelected: true)
+        self.yinSiView.setProtocol(tshdk1, protocolPrefix: tksm2)
         
         self.codeBtn.addTarget(self, action: #selector(smsCode(sender: )), for: UIControl.Event.touchUpInside)
         self.voiceCodeBtn.addTarget(self, action: #selector(getVoiceSkSender(sender: )), for: UIControl.Event.touchUpInside)
@@ -66,10 +69,14 @@ class LoginPresnetawkchView: BasicPresentView {
         self.contentView.addSubview(self.phoneTefiled)
         self.contentView.addSubview(self.dotLab3)
         self.contentView.addSubview(self.codeTefiled)
-        self.codeTefiled.addSubview(self.codeBtn)
         self.contentView.addSubview(self.voiceCodeBtn)
         self.contentView.addSubview(self.yinSiView)
         
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: {
+            if self.phoneTefiled.canBecomeFirstResponder {
+                self.phoneTefiled.becomeFirstResponder()
+            }
+        })
     }
     
     override func layoutPresentView() {
@@ -96,11 +103,6 @@ class LoginPresnetawkchView: BasicPresentView {
             make.top.equalTo(self.dotLab3.snp.bottom).offset(LAYOUT_MIN_UNIT * 3)
         }
         
-        self.codeBtn.snp.makeConstraints { make in
-            make.centerY.equalTo(self.codeTefiled)
-            make.right.equalToSuperview().offset(LAYOUT_MIN_UNIT * 2)
-        }
-        
         self.voiceCodeBtn.snp.makeConstraints { make in
             make.right.equalTo(self.codeTefiled)
             make.top.equalTo(self.codeTefiled.snp.bottom).offset(LAYOUT_MIN_UNIT * 6)
@@ -109,32 +111,115 @@ class LoginPresnetawkchView: BasicPresentView {
         self.yinSiView.snp.makeConstraints { make in
             make.bottom.equalTo(self.confirmBtn.snp.top).offset(-(LAYOUT_MIN_UNIT * 2))
             make.left.equalTo(self.confirmBtn)
+            make.width.lessThanOrEqualTo(jk_kScreenW - LAYOUT_MIN_UNIT * 15)
             make.top.equalTo(self.voiceCodeBtn.snp.bottom).offset(120)
         }
     }
     
-    override func closePresentView(sender: UIButton) {
+    override func closePresentView() {
+        self.codeBtn.initCodeTimerStatus()
         self.f_view_controller?.dismiss(animated: true)
     }
 
-    override func confirmClick(sender: UIButton) {
-        APPCocoaLog.debug("---------")
+    override func confirmClick(sender: APPActivityButton) {
+        guard self.yinSiView.hasSelected else {
+            self.makeToast(APPLanguageInsTool.loadLanguage("login_yinsi"))
+            return
+        }
+        
+        guard let _p_text = self.phoneTefiled.text else {
+            self.makeToast(APPLanguageInsTool.loadLanguage("login_phone_p"))
+            return
+        }
+        
+        guard let _c_text = self.codeTefiled.text else {
+            self.makeToast(APPLanguageInsTool.loadLanguage("login_v_code_t"))
+            return
+        }
+        
+        sender.startAnimation()
+        
+        APPNetRequestManager.afnReqeustType(NetworkRequestConfig.defaultRequestConfig("immediatelying/tell", requestParams: ["issn":_p_text, "determination": _c_text])) {[weak self] (task: URLSessionDataTask, res: APPSuccessResponse) in
+            sender.stopAnimation()
+            guard let _d = res.jsonDict else {
+                return
+            }
+            
+            GlobalCommonFile.shared.appLoginInfo = UserloginsskkModel.model(with: _d)
+            GlobalCommonFile.shared.encoderukllsdinfoToDskkd()
+            BuryShuJuTool.riskControlRepoeri(type: TongJiEventUploadStyle.TJ_Login, beginTime: self?.f_view_controller?.buryingStartTime, endTime: Date().jk.dateToTimeStamp())
+            self?.codeBtn.stop()
+            self?.closePresentView()
+            
+        } failure: {[weak self] _, _ in
+            sender.stopAnimation()
+            self?.codeTefiled.jk.shake(times: 5, interval: 0.04) {
+                self?.codeTefiled.text = ""
+                if let _t = self?.codeTefiled.canBecomeFirstResponder, _t {
+                    self?.codeTefiled.becomeFirstResponder()
+                }
+            }
+        }
     }
 }
 
 @objc extension LoginPresnetawkchView {
     func smsCode(sender: APPCodeTimerButton) {
+        guard let _p_text = self.phoneTefiled.text else {
+            self.makeToast(APPLanguageInsTool.loadLanguage("login_phone_p"))
+            return
+        }
         
+        sender.isEnabled = false
+        self.f_view_controller?.buryingStartTime = Date().jk.dateToTimeStamp()
+        self.makeToastActivity(CSToastPositionCenter)
+        
+        APPNetRequestManager.afnReqeustType(NetworkRequestConfig.defaultRequestConfig("immediatelying/olof", requestParams: ["chase": _p_text])) {[weak self] (task: URLSessionDataTask, res: APPSuccessResponse) in
+            sender.isEnabled = true
+            self?.hideToastActivity()
+            sender.start()
+            
+            if let _can = self?.codeTefiled.canBecomeFirstResponder, _can {
+                self?.codeTefiled.becomeFirstResponder()
+            }
+        } failure: {[weak self] _, _ in
+            sender.isEnabled = true
+            self?.hideToastActivity()
+        }
     }
     
     func getVoiceSkSender(sender: UIButton) {
+        guard let _p_text = self.phoneTefiled.text else {
+            self.makeToast(APPLanguageInsTool.loadLanguage("login_phone_p"))
+            return
+        }
         
+        sender.isEnabled = false
+        self.f_view_controller?.buryingStartTime = Date().jk.dateToTimeStamp()
+        self.makeToastActivity(CSToastPositionCenter)
+        
+        APPNetRequestManager.afnReqeustType(NetworkRequestConfig.defaultRequestConfig("immediatelying/rooth", requestParams: ["chase": _p_text])) {[weak self] (task: URLSessionDataTask, res: APPSuccessResponse) in
+            sender.isEnabled = true
+            self?.hideToastActivity()
+            self?.makeToast(res.responseMsg)
+            
+            if let _can = self?.codeTefiled.canBecomeFirstResponder, _can {
+                self?.codeTefiled.becomeFirstResponder()
+            }
+        } failure: {[weak self] _, _ in
+            sender.isEnabled = true
+            self?.hideToastActivity()
+        }
     }
 }
 
 extension LoginPresnetawkchView: APPProtocolDelegate {
     func gotoProtocol() {
+        guard let _p = GlobalCommonFile.shared.privacyURL else {
+            return
+        }
         
+        LuYouTool.shared.gotoPage(pageUrl: _p)
     }
 }
 

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SecondOrdViewController: BasicViewController {
+class SecondOrdViewController: BasicViewController, AutoHiddenNavigationBar {
 
     override func viewDidLoad() {
         super.viewDidLoad()

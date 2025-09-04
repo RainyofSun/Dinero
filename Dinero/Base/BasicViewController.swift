@@ -25,6 +25,7 @@ class BasicViewController: UIViewController {
     }()
     
     open var buryingStartTime: String?
+    private(set) var changeTabBarColor: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,13 @@ class BasicViewController: UIViewController {
         self.layoutPageViews()
         
         self.pageNetRequest()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let _tab = self.tabBarController as? BasicTabbarViewController {
+            _tab.changeBarColor(color: changeTabBarColor ? UIColor.clear : UIColor.white)
+        }
     }
 
     public func buildPageUI() {
@@ -63,9 +71,13 @@ class BasicViewController: UIViewController {
                     make.edges.equalToSuperview()
                 }
             } else {
+                var bottom: Double = jk_kTabbarFrameH
+                if let _tab = self.tabBarController as? BasicTabbarViewController {
+                    bottom = _tab.barHeight
+                }
                 self.basicScrollContentView.snp.makeConstraints { make in
                     make.horizontalEdges.top.equalToSuperview()
-                    make.bottom.equalToSuperview().offset(-UIDevice.app_tabbarAndSafeAreaHeight())
+                    make.bottom.equalToSuperview().offset(-bottom)
                 }
             }
         }

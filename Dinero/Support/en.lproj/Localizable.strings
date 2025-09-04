@@ -15,11 +15,13 @@
 "login_phone"="Phone number";
 "login_phone_p"="Enter your phone number";
 "login_v_code"="Verification code";
+"login_v_code_t"="Verification code is empty";
 "login_v_code_btn"="Get code";
 "login_v_voice"="Voice verification";
 "login_privicy"="I have read and agree ";
 "login_ppp"="Privacy Agreement";
 "login_btn"="Login";
+"login_yinsi"="Please confirm the Privacy Agreement";
 
 "order_tip"="Here is a centralized display of all your completed, in-progress, or overdue order information.";
 "order_repay"="Repayment";

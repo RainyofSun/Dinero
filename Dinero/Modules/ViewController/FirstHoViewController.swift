@@ -7,23 +7,35 @@
 
 import UIKit
 
-class FirstHoViewController: BasicViewController {
+class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    private lazy var bigCard: BigCardViskdl = BigCardViskdl(frame: CGRectZero)
+    
+    override var changeTabBarColor: Bool {
+        return true
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func buildPageUI() {
+        super.buildPageUI()
+        
+        self.basicScrollContentView.addSubview(self.bigCard)
     }
-    */
-
+    
+    override func layoutPageViews() {
+        super.layoutPageViews()
+        
+        self.basicScrollContentView.snp.remakeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        self.bigCard.snp.makeConstraints { make in
+            make.left.top.equalToSuperview()
+            make.size.equalTo(self.view.size)
+        }
+    }
+    
+    override func pageNetRequest() {
+        super.pageNetRequest()
+        
+    }
 }

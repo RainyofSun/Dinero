@@ -14,11 +14,13 @@
 "login_phone"="Número de teléfono";
 "login_phone_p"="Introduzca su número de teléfono";
 "login_v_code"="Código de verificación";
+"login_v_code_t"="El código de verificación está vacío";
 "login_v_code_btn"="Obtener código";
 "login_v_voice"="Verificación de voz";
 "login_privicy"="He leído y acepto el ";
 "login_ppp"="Acuerdo de privacidad.";
 "login_btn"="Iniciar sesión";
+"login_yinsi"="Por favor, confirme el Acuerdo de Privacidad";
 
 "order_tip"="Aquí encontrará una visualización centralizada de toda la información sobre sus pedidos completados, en curso o vencidos.";
 "order_repay"="Reembolso";

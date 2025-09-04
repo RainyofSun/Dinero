@@ -22,7 +22,7 @@ class BasicTabbar: UITabBar {
     private let _top_y = 15
     private let _item_padding = 15
     
-    private var itemContentView: UIView = {
+    private(set) var itemContentView: UIView = {
         let view = UIView(frame: CGRectZero)
         view.backgroundColor = UIColor.hexStringColor(hexString: "#3D000A")
         return view
@@ -31,7 +31,7 @@ class BasicTabbar: UITabBar {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .clear
-        self.backgroundColor = UIColor.red.withAlphaComponent(0.4)
+        self.backgroundColor = UIColor.white
         self.original_size = frame.size
         
         if jk_isIPhoneNotch {
