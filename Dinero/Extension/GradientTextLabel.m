@@ -25,49 +25,55 @@
 }
 
 
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    // 先画描边
+    // === 先画文字到一个独立 context，用来生成 mask ===
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 0);
+    CGContextRef maskContext = UIGraphicsGetCurrentContext();
+    
+    // 画描边+填充
+//    NSDictionary *textAttr = @{
+//        NSFontAttributeName : self.font,
+//        NSStrokeColorAttributeName : [UIColor whiteColor],
+//        NSStrokeWidthAttributeName : @(-3.0), // 负数=描边+填充
+//        NSForegroundColorAttributeName : [UIColor whiteColor]
+//    };
+//    [self.text drawInRect:self.bounds withAttributes:textAttr];
+    
+    // === 1. 描边 ===
     NSDictionary *strokeAttr = @{
-        NSFontAttributeName : self.font,
-        NSStrokeColorAttributeName : [UIColor whiteColor],   // 描边颜色
-        NSStrokeWidthAttributeName : @(-3.0),               // 负数 = 描边 + 填充
+        NSFontAttributeName: self.font,
+        NSStrokeColorAttributeName: [UIColor whiteColor],
+        NSStrokeWidthAttributeName: @(-3.0) // 正数，只描边
     };
     [self.text drawInRect:self.bounds withAttributes:strokeAttr];
-
-    // 再画填充（填充色先随便，后面会被 mask 替换成渐变）
-    NSDictionary *fillAttr = @{
-        NSFontAttributeName : self.font,
-        NSForegroundColorAttributeName : [UIColor whiteColor]
-    };
-    [self.text drawInRect:self.bounds withAttributes:fillAttr];
-
-    // 用文字生成 mask
-    CGImageRef dhtmlMask = CGBitmapContextCreateImage(context);
     
-    CGContextClearRect(context, rect);
+    // 把文字图像拿出来
+    CGImageRef textMask = CGBitmapContextCreateImage(maskContext);
+    UIGraphicsEndImageContext();
     
-    CGContextTranslateCTM(context, 0.0, self.bounds.size.height);
+    // === 主 context 绘制渐变 ===
+    CGContextSaveGState(context);
+    CGContextTranslateCTM(context, 0, self.bounds.size.height);
     CGContextScaleCTM(context, 1.0, -1.0);
-    CGContextClipToMask(context, rect, dhtmlMask);
+    CGContextClipToMask(context, rect, textMask);
     
-
-
-
+    // 渐变
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGFloat locations[] = {0, 1};
-    NSArray *colors = @[(__bridge id)[UIColor colorWithHexString:@"#F23055"].CGColor,
-                        (__bridge id)[UIColor colorWithHexString:@"#FFD06C"].CGColor];
+    NSArray *colors = @[(__bridge id)[UIColor colorWithRed:0.82 green:0.3 blue:0.36 alpha:1].CGColor,
+                        (__bridge id)[UIColor colorWithRed:0.36 green:0.11 blue:0.21 alpha:1].CGColor];
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)colors, locations);
-    CGPoint start = CGPointMake(self.bounds.size.width / 2.0, 0);
-    CGPoint end = CGPointMake(self.bounds.size.width / 2.0, self.bounds.size.height);
-    CGContextDrawLinearGradient(context, gradient, start, end, kCGGradientDrawsBeforeStartLocation);
+    CGPoint start = CGPointMake(0, rect.size.height/2);
+    CGPoint end = CGPointMake(rect.size.width, rect.size.height/2);
+    CGContextDrawLinearGradient(context, gradient, start, end, 0);
     
+    // 清理
+    CGContextRestoreGState(context);
     CGColorSpaceRelease(colorSpace);
     CGGradientRelease(gradient);
-    CGImageRelease(dhtmlMask);
+    CGImageRelease(textMask);
 }
 
 @end

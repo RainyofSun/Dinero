@@ -37,7 +37,10 @@ class BasicViewController: UIViewController {
         
         self.buildPageUI()
         self.layoutPageViews()
-        
+    }
+    
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
         self.pageNetRequest()
     }
     
