@@ -10,12 +10,11 @@ import UIKit
 class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
 
     private lazy var bigCard: BigCardViskdl = BigCardViskdl(frame: CGRectZero)
+    private lazy var smallCard: SmallCardViskaowk = SmallCardViskaowk(frame: CGRectZero)
+    
     private var _locan_sk_modls: Katz?
     private var _service_smd_mods: Maria?
-    
-    override var changeTabBarColor: Bool {
-        return true
-    }
+
     
     override func buildPageUI() {
         super.buildPageUI()
@@ -23,8 +22,11 @@ class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
         self.basicScrollContentView.isPagingEnabled = true
         self.basicScrollContentView.isScrollEnabled = false
         
+        self.basicScrollContentView.isHidden = true
         self.bigCard.bihdelegate = self
         self.basicScrollContentView.addSubview(self.bigCard)
+        self.basicScrollContentView.addSubview(self.smallCard)
+        self.changeTabBarBGColor(isClear: true)
     }
     
     override func layoutPageViews() {
@@ -37,6 +39,12 @@ class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
         self.bigCard.snp.makeConstraints { make in
             make.left.top.equalToSuperview()
             make.size.equalTo(self.view.size)
+        }
+        
+        self.smallCard.snp.makeConstraints { make in
+            make.top.size.equalTo(self.bigCard)
+            make.left.equalTo(self.bigCard.snp.right)
+            make.right.equalToSuperview()
         }
     }
     
@@ -63,9 +71,12 @@ class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
             }
             
             if let _sma_data = _model.smallCardData {
-                
+                self?._locan_sk_modls = _sma_data
+                self?.smallCard.refreshSmallCardTopModel(chanPinModel: _sma_data, chanPinList: _model.cardDatas)
+                self?.layoutPageUI(isBig: false)
             }
             
+            self?.basicScrollContentView.isHidden = false
             self?._service_smd_mods = _model.maria
         }
     }
@@ -76,6 +87,8 @@ class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
         } else {
             self.basicScrollContentView.setContentOffsetX(jk_kScreenW, animated: true)
         }
+        
+        changeTabBarBGColor(isClear: isBig)
     }
     
     func gotoChanpinDetailPage(_ chanPinID: String, sender: ActivityAnimationProtocol) {

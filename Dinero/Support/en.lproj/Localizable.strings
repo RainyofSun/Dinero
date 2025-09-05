@@ -71,3 +71,5 @@
 "address_sel"="please choose";
 
 "time_tip"="Please select a time";
+"mine_title" = "My";
+"order_title" = "Order list";

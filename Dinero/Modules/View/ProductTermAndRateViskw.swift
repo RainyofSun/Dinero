@@ -25,7 +25,7 @@ class ProductTermAndRateViskw: UIView {
         
         self.addSubview(self.consjakwiLab)
         self.consjakwiLab.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 4)
+            make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 2)
             make.verticalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 3)
         }
         

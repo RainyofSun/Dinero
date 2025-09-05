@@ -31,6 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         DeviceNetObserver.shared.StartNetworkStatusListener()
         DeviceAuthorizationTool.authorization()
         APPLanguageInsTool.setLocalLanguage(InterbationalLanguage.English)
+        GlobalCommonFile.shared.unencodeuswlfromdiskld()
         buildRootVC()
     }
 

@@ -70,3 +70,5 @@
 "address_sel"="Por favor elige";
 
 "time_tip"="Por favor seleccione una hora";
+"mine_title" = "Mi";
+"order_title" = "Lista de pedidos";

@@ -38,6 +38,10 @@ class LoginPresnetawkchView: BasicPresentView {
         
         self.codeTefiled.delegate = self
         
+        if let _t = GlobalCommonFile.shared.appLoginInfo?.issn {
+            self.phoneTefiled.text = _t
+        }
+        
         self.phoneTefiled.backgroundColor = UIColor.hexStringColor(hexString: "#FFF6CA")
         self.phoneTefiled.borderStyle = .none
         self.phoneTefiled.layer.borderWidth = 1

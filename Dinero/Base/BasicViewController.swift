@@ -25,7 +25,6 @@ class BasicViewController: UIViewController {
     }()
     
     open var buryingStartTime: String?
-    private(set) var changeTabBarColor: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,16 +42,9 @@ class BasicViewController: UIViewController {
         super.viewIsAppearing(animated)
         self.pageNetRequest()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if let _tab = self.tabBarController as? BasicTabbarViewController {
-            _tab.changeBarColor(color: changeTabBarColor ? UIColor.clear : UIColor.white)
-        }
-    }
 
     public func buildPageUI() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor.hexStringColor(hexString: "#FFF2EF")
         self.view.addSubview(self.gradientView)
         self.view.addSubview(self.basicScrollContentView)
     }
@@ -92,5 +84,11 @@ class BasicViewController: UIViewController {
     
     public func pageNetRequest() {
         
+    }
+    
+    public func changeTabBarBGColor(isClear: Bool) {
+        if let _tab = self.tabBarController as? BasicTabbarViewController {
+            _tab.changeBarColor(color: isClear ? UIColor.clear : UIColor.white)
+        }
     }
 }

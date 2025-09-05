@@ -87,4 +87,5 @@ class Katz: BasicResponseModel {
     public var termInfo1: String?
     public var termInfo2: String?
     public var yxTag: [String]?
+    var mary: String?
 }

@@ -11,7 +11,7 @@ class BasicNavigationViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .clear
+        self.view.backgroundColor = .white
         self.delegate = self
         self.navigationAppearanceSetting()
     }
