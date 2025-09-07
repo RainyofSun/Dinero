@@ -7,8 +7,15 @@
 
 import UIKit
 
+protocol SmallCaskwiApplyProtocol: AnyObject {
+    func gotoChanpisnwViProtocols(sender: APPActivityButton)
+    func gotoChanpisnwViProtocols(sender: APPActivityButton, idsrel: String)
+}
+
 class SmallCardViskaowk: UIView {
 
+    weak open var samllDelesjek: SmallCaskwiApplyProtocol?
+    
     private lazy var logoView: ProductLogosjVies = ProductLogosjVies(frame: CGRectZero)
     private lazy var bgImgView: UIImageView = UIImageView(image: UIImage(named: "home_small"))
     private lazy var tipLab: UILabel = UILabel.buildNormalTextLabel("", t_color: UIColor.white, font: UIFont.systemFont(ofSize: 14))
@@ -20,6 +27,8 @@ class SmallCardViskaowk: UIView {
         view.strokeWidth = 6.0
         return view
     }()
+    
+    private lazy var contrilws: UIControl = UIControl(frame: CGRectZero)
     
     private lazy var pInfoView: ProductTermAndRateViskw = ProductTermAndRateViskw(frame: CGRectZero)
     
@@ -45,15 +54,19 @@ class SmallCardViskaowk: UIView {
         super.init(frame: frame)
         self.addSubview(self.logoView)
         self.addSubview(self.bgImgView)
+        self.bgImgView.isUserInteractionEnabled = true
         self.bgImgView.addSubview(self.tipLab)
         self.bgImgView.addSubview(self.amountskdLab)
         self.bgImgView.addSubview(self.pInfoView)
         self.bgImgView.addSubview(self.applyBtn)
+        self.bgImgView.addSubview(self.contrilws)
         
         self.listView.register(SmallCardPlishelwTableViewCell.self, forCellReuseIdentifier: SmallCardPlishelwTableViewCell.className())
         self.listView.delegate = self
         self.listView.dataSource = self
         self.addSubview(self.listView)
+        
+        self.contrilws.addTarget(self, action: #selector(cliskAppleFunctions(sender: )), for: UIControl.Event.touchUpInside)
         
         self.logoView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(LAYOUT_MIN_UNIT * 4)
@@ -85,6 +98,10 @@ class SmallCardViskaowk: UIView {
             make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 9)
             make.top.equalTo(self.pInfoView.snp.bottom).offset(LAYOUT_MIN_UNIT * 2.5)
             make.height.equalTo(50)
+        }
+        
+        self.contrilws.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
         self.listView.snp.makeConstraints { make in
@@ -127,6 +144,10 @@ class SmallCardViskaowk: UIView {
             self.listView.reloadData()
         }
     }
+    
+    @objc func cliskAppleFunctions(sender: UIControl) {
+        self.samllDelesjek?.gotoChanpisnwViProtocols(sender: self.applyBtn)
+    }
 }
 
 extension SmallCardViskaowk: UITableViewDelegate, UITableViewDataSource {
@@ -144,6 +165,10 @@ extension SmallCardViskaowk: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let _cell = tableView.cellForRow(at: indexPath) as? SmallCardPlishelwTableViewCell, let _id = self.listSource[indexPath.row].pmid else {
+            return
+        }
         
+        self.samllDelesjek?.gotoChanpisnwViProtocols(sender: _cell.applyBtn, idsrel: _id)
     }
 }

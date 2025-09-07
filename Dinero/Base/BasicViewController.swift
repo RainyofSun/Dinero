@@ -37,11 +37,6 @@ class BasicViewController: UIViewController {
         self.buildPageUI()
         self.layoutPageViews()
     }
-    
-    override func viewIsAppearing(_ animated: Bool) {
-        super.viewIsAppearing(animated)
-        self.pageNetRequest()
-    }
 
     public func buildPageUI() {
         self.view.backgroundColor = UIColor.hexStringColor(hexString: "#FFF2EF")

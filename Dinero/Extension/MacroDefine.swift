@@ -53,6 +53,7 @@ let APP_HOME: String = "ios://Dine.roFu.erza/occupational"
 let APP_LOGIN: String = "ios://Dine.roFu.erza/gender"
 let APP_ORDER: String = "ios://Dine.roFu.erza/these"
 let APP_PRODUCT: String = "ios://Dine.roFu.erza/this"
+let APP_Order_list: String = "ios://Dine.roFu.erza/ilswmdk"
 
 /*
  ---------------------------

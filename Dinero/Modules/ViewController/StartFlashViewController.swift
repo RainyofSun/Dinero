@@ -22,6 +22,11 @@ class StartFlashViewController: BasicViewController {
     private lazy var firstCell = FlashCellView(frame: CGRectZero)
     private lazy var secondCell = FlashCellView(frame: CGRectZero, isFirst: false)
     
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        self.pageNetRequest()
+    }
+    
     override func buildPageUI() {
         super.buildPageUI()
         

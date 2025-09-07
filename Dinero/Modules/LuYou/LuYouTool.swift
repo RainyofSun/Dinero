@@ -37,6 +37,8 @@ class LuYouTool: NSObject {
                 _root_vc.selectedIndex = 1
             } else if url.contains(APP_PRODUCT) {
                 top_saw?.navigationController?.pushViewController(ChanPinProdViewController(withCommodityIDNumber: self.pseparationURLParameter(url: url)), animated: true)
+            } else if url.contains(APP_Order_list) {
+                top_saw?.navigationController?.pushViewController(OrderLiswkOpwksumdiViewController(withOrdkekLstIDNumber: self.pseparationURLParameter(url: url)), animated: true)
             } else {
                 if let _t = targetVcslao {
                     top_saw?.navigationController?.pushViewController(_t, animated: true)

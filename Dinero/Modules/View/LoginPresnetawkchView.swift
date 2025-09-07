@@ -38,7 +38,7 @@ class LoginPresnetawkchView: BasicPresentView {
         
         self.codeTefiled.delegate = self
         
-        if let _t = GlobalCommonFile.shared.appLoginInfo?.issn {
+        if let _t = UserDefaults.standard.string(forKey: "userPhone") {
             self.phoneTefiled.text = _t
         }
         
@@ -122,6 +122,7 @@ class LoginPresnetawkchView: BasicPresentView {
     
     override func closePresentView() {
         self.codeBtn.initCodeTimerStatus()
+        NotificationCenter.default.post(name: NSNotification.Name.init("refreshHome"), object: nil)
         self.f_view_controller?.dismiss(animated: true)
     }
 
@@ -150,6 +151,8 @@ class LoginPresnetawkchView: BasicPresentView {
             }
             
             GlobalCommonFile.shared.appLoginInfo = UserloginsskkModel.model(with: _d)
+            UserDefaults.standard.set(GlobalCommonFile.shared.appLoginInfo?.issn, forKey: "userPhone")
+            UserDefaults.standard.synchronize()
             GlobalCommonFile.shared.encoderukllsdinfoToDskkd()
             BuryShuJuTool.riskControlRepoeri(type: TongJiEventUploadStyle.TJ_Login, beginTime: self?.f_view_controller?.buryingStartTime, endTime: Date().jk.dateToTimeStamp())
             self?.codeBtn.stop()

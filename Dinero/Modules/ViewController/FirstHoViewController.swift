@@ -14,9 +14,14 @@ class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
     
     private var _locan_sk_modls: Katz?
     private var _service_smd_mods: Maria?
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.pageNetRequest()
+    }
     
     override func buildPageUI() {
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshHowmswl), name: NSNotification.Name.init("refreshHome"), object: nil)
         super.buildPageUI()
         
         self.basicScrollContentView.isPagingEnabled = true
@@ -24,6 +29,7 @@ class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
         
         self.basicScrollContentView.isHidden = true
         self.bigCard.bihdelegate = self
+        self.smallCard.samllDelesjek = self
         self.basicScrollContentView.addSubview(self.bigCard)
         self.basicScrollContentView.addSubview(self.smallCard)
         self.changeTabBarBGColor(isClear: true)
@@ -113,6 +119,10 @@ class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
             sender.stopAnimation()
         }
     }
+    
+    @objc func refreshHowmswl() {
+        self.pageNetRequest()
+    }
 }
 
 extension FirstHoViewController: BidCardProtocol {
@@ -121,6 +131,20 @@ extension FirstHoViewController: BidCardProtocol {
             return
         }
         
-        self.gotoChanpinDetailPage("\(_id)", sender: sender)
+        self.gotoChanpinDetailPage(_id, sender: sender)
+    }
+}
+
+extension FirstHoViewController: SmallCaskwiApplyProtocol {
+    func gotoChanpisnwViProtocols(sender: CYSwiftExtension.APPActivityButton) {
+        guard let _id = self._locan_sk_modls?.pmid else {
+            return
+        }
+        
+        self.gotoChanpinDetailPage(_id, sender: sender)
+    }
+    
+    func gotoChanpisnwViProtocols(sender: CYSwiftExtension.APPActivityButton, idsrel: String) {
+        self.gotoChanpinDetailPage(idsrel, sender: sender)
     }
 }

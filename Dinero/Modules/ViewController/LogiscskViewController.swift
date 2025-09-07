@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LogiscskViewController: BasicViewController {
+class LogiscskViewController: BasicViewController, AutoHiddenNavigationBar {
 
     private lazy var presentView: LoginPresnetawkchView = LoginPresnetawkchView(frame: CGRectZero)
     

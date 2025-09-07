@@ -9,6 +9,8 @@ import UIKit
 
 class BasicPresentView: UIView {
     
+    open var clickConfirmClosure: ((BasicPresentView, APPActivityButton) -> Void)?
+    
     private(set) lazy var contentView: UIImageView = {
         let bgImg = UIImage(named: "present")
         let resiceImg = bgImg?.resizableImage(withCapInsets: UIEdgeInsets.init(top: bgImg!.size.height * 0.6, left: 0, bottom: bgImg!.size.height * 0.7, right: 0), resizingMode: UIImage.ResizingMode.stretch)
@@ -82,7 +84,9 @@ class BasicPresentView: UIView {
     }
     
     @objc func confirmClick(sender: APPActivityButton) {
-        
+        if self.clickConfirmClosure != nil {
+            self.clickConfirmClosure?(self, sender)
+        }
     }
     
     func showPresent() {

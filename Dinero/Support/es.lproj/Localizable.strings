@@ -27,6 +27,8 @@
 "order_apply"="Aplicar";
 "order_finis"="Terminado";
 "order_empty"="Aún no tienes ninguna información sobre pedidos. Ve a la página de inicio y envía tu solicitud ahora.";
+"order_title"="lista de pedidos";
+"order_enklw"="Entrada de pedido";
 
 "mine_tip"="Con asistencia profesional las 24 horas del día, los 7 días de la semana, se resuelven todos los problemas, lo que le permite estar tranquilo y sin preocupaciones.";
 "mine_fun"="Más funciones";
@@ -36,9 +38,12 @@
 "setting_lot"="Cerrar sesión";
 "setting_lot_alert"="¡Tendrás tu préstamo en un santiamén! ¿Seguro que quieres salir?";
 "setting_confirm"="Confirmar";
+"settitle_wk"="Configuración";
+"setting_skw"="Recordatorio de pago";
+"setting_wkskq"="Configuración exitosa";
 
 "cancel_wel_tip"="Bienvenido~ ";
-"ccancel_del"="Eliminar cuenta";
+"ccancel_del"="Eliminar cuenta\n";
 "cancel_del1"="Eliminar tu cuenta provocará la pérdida permanente de los siguientes datos y funciones:";
 "cancel_tip1"="Información personal: Esto incluye su perfil, preferencias y otros datos personales.";
 "cancel_tip2"="Historial: Todos los registros históricos serán eliminados y no podrán recuperarse.";

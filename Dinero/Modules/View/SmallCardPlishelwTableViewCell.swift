@@ -35,7 +35,7 @@ class SmallCardPlishelwTableViewCell: UITableViewCell {
     }()
     
     private lazy var nameskieLab: UILabel = UILabel.buildNormalTextLabel("", t_color: UIColor.black, font: UIFont.systemFont(ofSize: 12))
-    private lazy var applyBtn: APPActivityButton = {
+    private(set) lazy var applyBtn: APPActivityButton = {
         let view = APPActivityButton.buildGradientLoadingButton("")
         view.corner(6)
         view.setTitleColor(UIColor.white, for: UIControl.State.normal)

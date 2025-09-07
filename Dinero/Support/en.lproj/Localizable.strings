@@ -28,6 +28,8 @@
 "order_apply"="Apply";
 "order_finis"="Finished";
 "order_empty"="You don't have any order information yet. Go to the homepage and apply now";
+"order_title"="Order list";
+"order_enklw"="Order entry";
 
 "mine_tip"="With 7x24-hour professional support, all issues are resolved, leaving you at ease and worry-free.";
 "mine_fun"="More functions";
@@ -37,9 +39,12 @@
 "setting_lot"="Sign out";
 "setting_lot_alert"="You'll have your loan in no time! Sure you want out?";
 "setting_confirm"="Confirm";
+"settitle_wk"="Setting";
+"setting_skw"="Payment Reminder";
+"setting_wkskq"="Setup success";
 
 "cancel_wel_tip"="Wellcome~ ";
-"ccancel_del"="Delete account";
+"ccancel_del"="Delete account\n";
 "cancel_del1"="Deleting your account will result in the permanent loss of the following data and features:";
 "cancel_tip1"="Personal Information: This includes your profile.preferences, and other personal data.";
 "cancel_tip2"="History: All historical records will be deleted and cannot be recovered.";

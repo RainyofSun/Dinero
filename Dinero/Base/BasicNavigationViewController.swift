@@ -11,7 +11,6 @@ class BasicNavigationViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
         self.delegate = self
         self.navigationAppearanceSetting()
     }
@@ -74,14 +73,23 @@ extension BasicNavigationViewController: UINavigationBarDelegate {
 
 private extension BasicNavigationViewController {
     func navigationAppearanceSetting() {
+        let appearance = UINavigationBarAppearance()
         let att = [NSAttributedString.Key.foregroundColor: UIColor.hexStringColor(hexString: "#27272E"),
                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)]
-        UINavigationBar.appearance().titleTextAttributes = att
         let originalImage = UIImage(systemName: "chevron.backward")
         let tintedImage = originalImage?.withTintColor(UIColor.hexStringColor(hexString: "#27272E"), renderingMode: .alwaysOriginal)
-        UINavigationBar.appearance().backIndicatorImage = tintedImage
-        UINavigationBar.appearance().backIndicatorTransitionMaskImage = tintedImage
-        UINavigationBar.appearance().shadowImage = barShadowImage()
+        appearance.configureWithOpaqueBackground() // 关键：不透明背景
+        appearance.backgroundColor = .white        // 设置背景色
+        appearance.shadowColor = .clear
+        
+        self.navigationBar.standardAppearance = appearance
+        self.navigationBar.scrollEdgeAppearance = appearance
+        self.navigationBar.compactAppearance = appearance
+        self.navigationBar.tintColor = UIColor.hexStringColor(hexString: "#27272E")
+        self.navigationBar.backIndicatorImage = tintedImage
+        self.navigationBar.backIndicatorTransitionMaskImage = tintedImage
+        self.navigationBar.shadowImage = barShadowImage()
+        self.navigationBar.titleTextAttributes = att
     }
     
     func barShadowImage() -> UIImage? {
