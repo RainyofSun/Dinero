@@ -34,7 +34,7 @@ class Analyze: BasicResponseModel, YYModel {
     var composition: [Int]?
     
     /// 金额 【重要】
-    var francine: Int?
+    var francine: String?
     
     /// 借款期限
     var house: [String]?

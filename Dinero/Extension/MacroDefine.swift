@@ -34,11 +34,12 @@ enum ShouYeElement: String {
 }
 
 enum ChanPinAuthElement: String {
-    case Certif_ID_Cosujward = "gapa"
-    case Certif_Persopalsjnal_Inuywjfo = "gapb"
-    case Certif_Job_Info = "gapc"
-    case Certif_Contesdkcts = "gapd"
-    case Certif_BankkskCard = "gape"
+    case Certif_Query = "gapa"
+    case Certif_ID_Cosujward = "gapb"
+    case Certif_Persopalsjnal_Inuywjfo = "gapc"
+    case Certif_Job_Info = "gapd"
+    case Certif_Contesdkcts = "gape"
+    case Certif_BankkskCard = "gapf"
 }
 
 enum RenZhengElemeent: String {

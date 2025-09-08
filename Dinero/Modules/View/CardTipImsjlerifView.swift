@@ -58,7 +58,12 @@ class CardTipImsjlerifView: UIView {
         } else {
             self.colorLab.strokeColor = UIColor.white
             self.colorLab.gradientColors = [UIColor.hexStringColor(hexString: "#D24D5D"), UIColor.hexStringColor(hexString: "#5C1C35")]
-            self.colorLab.strokeWidth = 0.1
+            if style == .ChanPin {
+                self.colorLab.strokeWidth = 5
+                self.colorLab.font = UIFont.interFont(size: 16, fontStyle: InterFontWeight.Regular_Black_Italic)
+            } else {
+                self.colorLab.strokeWidth = 0.1
+            }
         }
         
         self.corner(15)

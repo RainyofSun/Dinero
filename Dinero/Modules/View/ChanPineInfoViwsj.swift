@@ -28,7 +28,7 @@ class ChanPineInfoViwsj: UIView {
         self.addSubview(self.valsueLas)
         
         self.iconSkwmVi.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(LAYOUT_MIN_UNIT * 12)
+            make.left.equalToSuperview().offset(LAYOUT_MIN_UNIT * 5)
             make.top.equalToSuperview()
         }
         
@@ -39,7 +39,7 @@ class ChanPineInfoViwsj: UIView {
         
         self.valsueLas.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(self.iconSkwmVi.snp.bottom).offset(LAYOUT_MIN_UNIT)
+            make.top.equalTo(self.iconSkwmVi.snp.bottom).offset(LAYOUT_MIN_UNIT * 3)
             make.bottom.equalToSuperview().offset(-LAYOUT_MIN_UNIT * 3)
         }
     }

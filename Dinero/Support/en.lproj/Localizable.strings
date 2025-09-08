@@ -57,6 +57,8 @@
 "auth_btn"="Next step";
 "auth_un"="Unverified";
 "auth_com"="Certified";
+"auth_confirm_tip"="Please confirm the agreement";
+"auth_qews"="Single Choice Question";
 
 "camera_tip1"="To ensure a smooth review, please pay attention to the following points when taking photos:";
 "camera_tip2"="Please place the four corners of your ID card inside the photo frame and take a complete photo.";

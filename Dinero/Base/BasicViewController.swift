@@ -25,6 +25,9 @@ class BasicViewController: UIViewController {
     }()
     
     open var buryingStartTime: String?
+    open var pppp_sid: String {
+        return GlobalCommonFile.shared.productID ?? ""
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -56,6 +56,8 @@
 "auth_btn"="Siguiente paso";
 "auth_un"="Sin verificar";
 "auth_com"="Certificado";
+"auth_confirm_tip"="Por favor confirme el acuerdo";
+"auth_qews"="Pregunta de opción única";
 
 "camera_tip1"="Para garantizar una revisión fluida, preste atención a los siguientes puntos al tomar fotos:";
 "camera_tip2"="Coloque las cuatro esquinas de su tarjeta de identificación dentro del marco de la foto y tome una foto completa.";
