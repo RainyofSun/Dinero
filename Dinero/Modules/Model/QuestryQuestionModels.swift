@@ -67,4 +67,5 @@ class Gov: BasicResponseModel {
     
     /// 提交到后端的字段对应值
     var lawrence: String?
+    var selectedTag: Int = -1
 }

@@ -9,7 +9,7 @@ import UIKit
 
 class QuestryQuestionButonskw: UIControl {
     
-    open var marks: String?
+    open var marks: Gov?
     
     private(set) lazy var tilsLab: UILabel = UILabel.buildNormalTextLabel("", t_color: UIColor.hexStringColor(hexString: "#202020"), font: UIFont.systemFont(ofSize: 14))
     private lazy var selswkMainsImf: UIImageView = {
@@ -22,6 +22,9 @@ class QuestryQuestionButonskw: UIControl {
         didSet {
             self.selswkMainsImf.isHidden = !isSelected
             self.layer.borderColor = isSelected ? Primary_Color1.cgColor : UIColor.clear.cgColor
+            if isSelected {
+                print("----2-2-")
+            }
         }
     }
     
@@ -30,6 +33,19 @@ class QuestryQuestionButonskw: UIControl {
         self.backgroundColor = UIColor.hexStringColor(hexString: "#FFF6CA")
         self.corner(22)
         self.layer.borderWidth = 1
+        
+        self.addSubview(self.tilsLab)
+        self.addSubview(self.selswkMainsImf)
+        
+        self.tilsLab.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(LAYOUT_MIN_UNIT * 5)
+        }
+        
+        self.selswkMainsImf.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 3)
+            make.right.equalToSuperview().offset(-LAYOUT_MIN_UNIT * 5)
+        }
     }
     
     required init?(coder: NSCoder) {

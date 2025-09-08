@@ -13,6 +13,7 @@ class QuestryQuestionHeader: UIControl {
         let view = UIView(frame: CGRectZero)
         view.backgroundColor = UIColor.hexStringColor(hexString: "#FF9900")
         view.corner(14)
+        view.isUserInteractionEnabled = false
         return view
     }()
     
@@ -32,14 +33,13 @@ class QuestryQuestionHeader: UIControl {
         self.addSubview(self.downaksmwIms)
         
         self.bgViewsWkd.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().offset(LAYOUT_MIN_UNIT * 3)
-            make.height.equalTo(30)
+            make.verticalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 3)
             make.left.equalToSuperview().offset(LAYOUT_MIN_UNIT * 5)
         }
         
         self.sinswkejLb.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 4)
-            make.centerY.equalToSuperview()
+            make.verticalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 2)
         }
         
         self.downaksmwIms.snp.makeConstraints { make in
@@ -53,6 +53,6 @@ class QuestryQuestionHeader: UIControl {
     }
     
     func reloadHeaderMdoes(isExpand: Bool) {
-        self.downaksmwIms.transform = !isExpand ? CGAffineTransform(rotationAngle: .pi/2) : .identity
+        self.downaksmwIms.transform = !isExpand ? CGAffineTransform(rotationAngle: .pi) : .identity
     }
 }

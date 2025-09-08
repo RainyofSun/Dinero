@@ -17,6 +17,7 @@ class QueryQuestionwkViewController: AuthBasicViewController {
     }()
     
     private var _ques_arrsuw: [Memorization] = []
+    private var _ques_mapwdl: [String: String] = [:]
     
     override func buildPageUI() {
         super.buildPageUI()
@@ -64,9 +65,9 @@ extension QueryQuestionwkViewController: UITableViewDelegate, UITableViewDataSou
             return UITableViewCell()
         }
         
-        _cell.reloadHeaderMdoes(models: self._ques_arrsuw[indexPath.row])
-        _cell.indexPasjw = indexPath
         _cell.delelswsjw = self
+        _cell.indexPasjw = indexPath
+        _cell.reloadHeaderMdoes(models: self._ques_arrsuw[indexPath.row])
         
         return _cell
     }
@@ -76,5 +77,18 @@ extension QueryQuestionwkViewController: QuestiosnCellProtocol {
     func expandOrNotCell(inds: IndexPath) {
         self._ques_arrsuw[inds.row].isExpand = !self._ques_arrsuw[inds.row].isExpand
         self.tagleView.reloadRow(at: inds, with: UITableView.RowAnimation.fade)
+    }
+    
+    func selectedQuesutiwonwms(marks: QuestryQuestionButonskw, indes: IndexPath) {
+        guard let _cel_gov = marks.marks else {
+            return
+        }
+        
+        self._ques_arrsuw[indes.row].gov?[marks.tag - 1000] = _cel_gov
+        if let _tel = self._ques_arrsuw[indes.row].tell {
+            self._ques_mapwdl[_tel] = _cel_gov.lawrence
+        }
+        
+        APPCocoaLog.debug("====== 问卷调查 ========\n ===== \(self._ques_mapwdl) ======== \n")
     }
 }

@@ -9,6 +9,7 @@ import UIKit
 
 protocol QuestiosnCellProtocol: AnyObject {
     func expandOrNotCell(inds: IndexPath)
+    func selectedQuesutiwonwms(marks: QuestryQuestionButonskw, indes: IndexPath)
 }
 
 class QuestryQuestionTableViewCell: UITableViewCell {
@@ -34,6 +35,7 @@ class QuestryQuestionTableViewCell: UITableViewCell {
         self.backgroundColor = .clear
         self.selectionStyle = .none
         
+        self.questtilsLab.textAlignment = .left
         self.headerjkikbnjh.addTarget(self, action: #selector(clickHesjwje(sender: )), for: UIControl.Event.touchUpInside)
         
         self.contentView.addSubview(self.whiskrBgView)
@@ -59,13 +61,18 @@ class QuestryQuestionTableViewCell: UITableViewCell {
         self.delelswsjw?.expandOrNotCell(inds: _inde)
     }
     
+    // TODO 约束有冲突
     func reloadHeaderMdoes(models: Memorization) {
         self.questtilsLab.text = models.gendered
         
         self.questtilsLab.isHidden = !models.isExpand
         self.chooseskfkdView.isHidden = self.questtilsLab.isHidden
+        self.headerjkikbnjh.reloadHeaderMdoes(isExpand: models.isExpand)
         
         UIView.animate(withDuration: 0.3) {
+//            self.headerjkikbnjh.snp.removeConstraints()
+//            self.questtilsLab.snp.removeConstraints()
+//            self.chooseskfkdView.snp.removeConstraints()
             if models.isExpand {
                 self.headerjkikbnjh.snp.remakeConstraints { make in
                     make.horizontalEdges.equalToSuperview()
@@ -84,7 +91,7 @@ class QuestryQuestionTableViewCell: UITableViewCell {
                 }
                 
                 if let _chs = models.gov {
-                    self.buildQuestionchsow(models: _chs)
+                    self.chooseskfkdView.subviews.isEmpty ? self.buildQuestionchsow(models: _chs) : self.refreshQuestionShow(models: _chs)
                 }
             } else {
                 self.headerjkikbnjh.snp.remakeConstraints { make in
@@ -104,8 +111,11 @@ private extension QuestryQuestionTableViewCell {
         models.enumerated().forEach { (index: Int, item: Gov) in
             let view = QuestryQuestionButonskw(frame: CGRectZero)
             view.tilsLab.text = item.rans
-            view.marks = item.lawrence
+            view.marks = item
             view.tag = 1000 + index
+            view.isSelected = false
+            view.addTarget(self, action: #selector(didSelecjswiQueydhwj(sender: )), for: UIControl.Event.touchUpInside)
+            
             self.chooseskfkdView.addSubview(view)
             
             if let _top = _tosp_viwes {
@@ -128,6 +138,36 @@ private extension QuestryQuestionTableViewCell {
             }
             
             _tosp_viwes = view
+        }
+    }
+    
+    func refreshQuestionShow(models: [Gov]) {
+        for item in self.chooseskfkdView.subviews {
+            if let _ite = item as? QuestryQuestionButonskw {
+                _ite.isSelected = false
+            }
+        }
+        
+        for item1 in self.chooseskfkdView.subviews {
+            if let it = item1 as? QuestryQuestionButonskw {
+                it.isSelected = it.marks?.selectedTag == it.tag
+            }
+        }
+        
+    }
+    
+    @objc func didSelecjswiQueydhwj(sender: QuestryQuestionButonskw) {
+        for item in self.chooseskfkdView.subviews {
+            if let _ite = item as? QuestryQuestionButonskw, _ite.isSelected {
+                _ite.isSelected = false
+                break
+            }
+        }
+        
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected, let _id = self.indexPasjw {
+            sender.marks?.selectedTag = sender.tag
+            self.delelswsjw?.selectedQuesutiwonwms(marks: sender, indes: _id)
         }
     }
 }

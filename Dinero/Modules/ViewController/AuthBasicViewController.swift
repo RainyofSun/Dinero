@@ -15,7 +15,7 @@ class AuthBasicViewController: BasicViewController {
         return view
     }()
     
-    private lazy var confirmBtn: APPActivityButton = APPActivityButton.buildGradientLoadingButton("auth_btn")
+    private lazy var confirmBtn: APPActivityButton = APPActivityButton.buildGradientLoadingButton(APPLanguageInsTool.loadLanguage("auth_btn"))
     
     init(certificationTitle title: String?) {
         super.init(nibName: nil, bundle: nil)
