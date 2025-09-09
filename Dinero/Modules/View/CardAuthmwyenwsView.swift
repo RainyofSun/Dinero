@@ -25,6 +25,7 @@ class CardAuthmwyenwsView: UIControl {
         super.init(frame: frame)
         
         self.updslwBtn.corner(21)
+        self.plackhesHoderimshView.corner(21)
         
         self.addSubview(self.titleswjLa)
         self.addSubview(self.whiteVsjwkView)

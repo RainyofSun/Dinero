@@ -13,7 +13,7 @@ class LogiscskViewController: BasicViewController, AutoHiddenNavigationBar {
     
     override func buildPageUI() {
         self.presentView.f_view_controller = self
-        self.view .addSubview(self.presentView)
+        self.view.addSubview(self.presentView)
     }
     
     override func layoutPageViews() {

@@ -10,6 +10,7 @@ import UIKit
 class CardUsesidnwIfosKsuwjPoseiView: BasicPresentView {
 
     open var infoPasjwsDicts: [String: String] = ["lawrence":"11"]
+    weak open var _preske_vc: UIViewController?
     
     private lazy var nameSdjws: CardCommoenswitemViskw = CardCommoenswitemViskw(frame: CGRectZero, inputsYwhdk: RenZhengElemeent.RZ_Text)
     private lazy var numbswjSdjws: CardCommoenswitemViskw = CardCommoenswitemViskw(frame: CGRectZero, inputsYwhdk: RenZhengElemeent.RZ_Text)
@@ -78,12 +79,55 @@ class CardUsesidnwIfosKsuwjPoseiView: BasicPresentView {
             self.infoPasjwsDicts["dei"] = _ids
         }
     }
+    
+    override func dismissPop() {
+        self._preske_vc?.dismiss(animated: true)
+    }
 }
 
 extension CardUsesidnwIfosKsuwjPoseiView: InfoUnitProtoslwpProtocl {
     func toushckawUniswInfoskw(itemiew: CardCommoenswitemViskw) {
         if itemiew.renzhensjakwStyle == .RZ_Enum {
             // 生日
+            guard let _super_siwk = self.superview else {
+                return
+            }
+            
+            let timePisker: BirthdayPsokeViwjsjVi = BirthdayPsokeViwjsjVi(frame: UIScreen.main.bounds)
+            _super_siwk.addSubview(timePisker)
+            UIView.transition(with: timePisker, duration: 0.3, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
+                timePisker.alpha = 1
+            }) { _ in
+                self.alpha = .zero
+            }
+            
+            timePisker.clickConfirmClosure = {[weak self] (popsjw: BasicPresentView, sender: APPActivityButton) in
+                guard let _pps_tims = popsjw as? BirthdayPsokeViwjsjVi, let _dtesjw = _pps_tims.selectedDate else {
+                    return
+                }
+                
+                if let _keus = self?.birthdwksSdjws.unttisTupe?.cacheKeu {
+                    self?.infoPasjwsDicts[_keus] = _dtesjw
+                }
+                
+                self?.birthdwksSdjws.reloaskwTiels(titles: nil, inspwText: _dtesjw)
+                
+                UIView.transition(with: timePisker, duration: 0.3, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
+                    timePisker.alpha = .zero
+                }) { _ in
+                    self?.alpha = 1
+                    timePisker.removeFromSuperview()
+                }
+            }
+            
+            timePisker.closeClosure = {[weak self] (popView: BasicPresentView) in
+                UIView.transition(with: timePisker, duration: 0.3, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
+                    timePisker.alpha = .zero
+                }) { _ in
+                    self?.alpha = 1
+                    timePisker.removeFromSuperview()
+                }
+            }
         }
     }
     

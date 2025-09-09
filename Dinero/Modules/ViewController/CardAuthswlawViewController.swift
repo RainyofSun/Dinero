@@ -145,7 +145,7 @@ private extension CardAuthswlawViewController {
         }
         
         self.view.makeToastActivity(CSToastPositionCenter)
-        var uploasdparams: [String: String] = ["discriminationPolicies": filePaje, "lawrence": self.isFaceskwAuth ? "10" : "11"]
+        let uploasdparams: [String: String] = ["discriminationPolicies": filePaje, "lawrence": self.isFaceskwAuth ? "10" : "11"]
         
         let config: NetworkRequestConfig = NetworkRequestConfig.defaultRequestConfig("immediatelying/chase", requestParams: uploasdparams)
         config.requestType = .upload
@@ -165,31 +165,26 @@ private extension CardAuthswlawViewController {
                 }
                 
                 if _as_resils.reversing == "1" {
-                    let popView = CardUsesidnwIfosKsuwjPoseiView(frame: CGRectZero)
-                    popView.refeshUsjeriDksInfos(model: _as_resils)
-                    UIDevice.current.keyWindow().addSubview(popView)
-                    popView.snp.makeConstraints { make in
-                        make.edges.equalToSuperview()
-                    }
+                    let prosjeVC: userIndoswksAuthViewController = userIndoswksAuthViewController()
+                    prosjeVC.modalPresentationStyle = .overCurrentContext
+                    prosjeVC.presentView.refeshUsjeriDksInfos(model: _as_resils)
+                    __self_sek.present(prosjeVC, animated: true)
                     
-                    popView.clickConfirmClosure = {[weak self] (popVie: BasicPresentView, sender: APPActivityButton) in
-                        guard let _indo = popVie as? CardUsesidnwIfosKsuwjPoseiView else {
+                    prosjeVC.presentView.clickConfirmClosure = { (popVie: BasicPresentView, sender: APPActivityButton) in
+                        guard let _indo = popVie as? CardUsesidnwIfosKsuwjPoseiView, !_indo.infoPasjwsDicts.isEmpty else {
                             return
                         }
                         
                         sender.startAnimation()
-                        APPNetRequestManager.afnReqeustType(NetworkRequestConfig.defaultRequestConfig("immediatelying/issn", requestParams: _indo.infoPasjwsDicts)) {[weak self] (task: URLSessionDataTask, res :APPSuccessResponse) in
+                        APPNetRequestManager.afnReqeustType(NetworkRequestConfig.defaultRequestConfig("immediatelying/issn", requestParams: _indo.infoPasjwsDicts)) { (task: URLSessionDataTask, res :APPSuccessResponse) in
                             sender.stopAnimation()
                             BuryShuJuTool.riskControlRepoeri(type: TongJiEventUploadStyle.TJ_TakingFace, beginTime: __self_sek.buryingStartTime, endTime: Date().jk.dateToTimeStamp())
                             __self_sek.cardks_indo_model?.trump?.locations = "1"
                             __self_sek.isFaceskwAuth = true
                             _indo.dismissPop()
-                        }
-                        
-                        popVie.dismissPop()
+                        }                        
                     }
 
-                    popView.showPresent()
                 } else {
                     BuryShuJuTool.riskControlRepoeri(type: TongJiEventUploadStyle.TJ_IDCardAlert, beginTime: __self_sek.buryingStartTime, endTime: Date().jk.dateToTimeStamp())
                     __self_sek.cardks_indo_model?.eliminating?.locations = "1"
