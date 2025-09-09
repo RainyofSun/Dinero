@@ -53,6 +53,21 @@ class QueryQuestionwkViewController: AuthBasicViewController {
             self?.tagleView.reloadData()
         }
     }
+    
+    override func clickNextBusjwk(sender: APPActivityButton) {
+        super.clickNextBusjwk(sender: sender)
+        
+        guard self._ques_arrsuw.count == self._ques_mapwdl.count else {
+            self.view.makeToast(APPLanguageInsTool.loadLanguage("auth_ques_tip"))
+            return
+        }
+        
+        self._ques_mapwdl["conservative"] = self.pppp_sid
+        
+        APPNetRequestManager.afnReqeustType(NetworkRequestConfig.defaultRequestConfig("immediatelying/remedy", requestParams: self._ques_mapwdl)) {[weak self] (task: URLSessionDataTask, res: APPSuccessResponse) in
+            self?.navigationController?.jk.popCurrentAndPush(vc: CardAuthswlawViewController(certificationTitle: self?._next_toelsl_map?[ChanPinAuthElement.Certif_ID_Cosujward], nextAuthTitle: self?._next_toelsl_map), animated: true)
+        }
+    }
 }
 
 extension QueryQuestionwkViewController: UITableViewDelegate, UITableViewDataSource {

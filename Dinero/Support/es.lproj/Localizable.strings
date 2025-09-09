@@ -58,6 +58,10 @@
 "auth_com"="Certificado";
 "auth_confirm_tip"="Por favor confirme el acuerdo";
 "auth_qews"="Pregunta de opción única";
+"auth_ques_tip"="Por favor complete el cuestionario";
+"auth_fail_tip"="El envío falló, por favor inténtelo de nuevo";
+"auth_uoslwo"="Subir";
+"auth_card_tis"="Por favor, cargue primero una foto de su identificación.";
 
 "camera_tip1"="Para garantizar una revisión fluida, preste atención a los siguientes puntos al tomar fotos:";
 "camera_tip2"="Coloque las cuatro esquinas de su tarjeta de identificación dentro del marco de la foto y tome una foto completa.";

@@ -22,9 +22,6 @@ class QuestryQuestionButonskw: UIControl {
         didSet {
             self.selswkMainsImf.isHidden = !isSelected
             self.layer.borderColor = isSelected ? Primary_Color1.cgColor : UIColor.clear.cgColor
-            if isSelected {
-                print("----2-2-")
-            }
         }
     }
     

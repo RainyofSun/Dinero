@@ -93,7 +93,7 @@ class ChanPinAuejwlInuejdCollectionViewCell: UICollectionViewCell {
         }
         
         self.proswNameLasL.text = model.gendered
-        self.stsuwjsLab.text = model.locations == 1 ? APPLanguageInsTool.loadLanguage("auth_com") : APPLanguageInsTool.loadLanguage("auth_un")
-        self.stauswImgViws.image = model.locations == 1 ? UIImage(named: "auths_comw") : UIImage(named: "unAuths")
+        self.stsuwjsLab.text = model.locations == "1" ? APPLanguageInsTool.loadLanguage("auth_com") : APPLanguageInsTool.loadLanguage("auth_un")
+        self.stauswImgViws.image = model.locations == "1" ? UIImage(named: "auths_comw") : UIImage(named: "unAuths")
     }
 }

@@ -70,9 +70,6 @@ class QuestryQuestionTableViewCell: UITableViewCell {
         self.headerjkikbnjh.reloadHeaderMdoes(isExpand: models.isExpand)
         
         UIView.animate(withDuration: 0.3) {
-//            self.headerjkikbnjh.snp.removeConstraints()
-//            self.questtilsLab.snp.removeConstraints()
-//            self.chooseskfkdView.snp.removeConstraints()
             if models.isExpand {
                 self.headerjkikbnjh.snp.remakeConstraints { make in
                     make.horizontalEdges.equalToSuperview()
@@ -158,9 +155,9 @@ private extension QuestryQuestionTableViewCell {
     
     @objc func didSelecjswiQueydhwj(sender: QuestryQuestionButonskw) {
         for item in self.chooseskfkdView.subviews {
-            if let _ite = item as? QuestryQuestionButonskw, _ite.isSelected {
+            if let _ite = item as? QuestryQuestionButonskw {
                 _ite.isSelected = false
-                break
+                _ite.marks?.selectedTag = -1
             }
         }
         

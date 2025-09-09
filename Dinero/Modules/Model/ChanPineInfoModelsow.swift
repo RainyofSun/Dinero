@@ -58,7 +58,7 @@ class Analyze: BasicResponseModel, YYModel {
     var little: String?
     
     /// 订单id
-    var living: Int?
+    var living: String?
     
     /// 遍历下方的数据，会包含期数 利率 或者金额【重要】
     var pooled: Pooled?
@@ -107,11 +107,11 @@ class Opposed: BasicResponseModel {
     /// 预留字文案 【重要】
     var weeks: String?
     
-    var lawrence: Int?
+    var lawrence: String?
     var claude: String?
     
     /// 是否已完成  【重要】
-    var locations: Int?
+    var locations: String?
     
     var durations: String?
     
@@ -135,7 +135,7 @@ class Responded: BasicResponseModel {
     var aged: String?
     
     var claude: String?
-    var lawrence: Int?
+    var lawrence: String?
     var gendered: String?
 }
 

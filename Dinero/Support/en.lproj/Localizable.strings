@@ -59,6 +59,10 @@
 "auth_com"="Certified";
 "auth_confirm_tip"="Please confirm the agreement";
 "auth_qews"="Single Choice Question";
+"auth_ques_tip"="Please complete the questionnaire";
+"auth_fail_tip"="Submission failed, please try again";
+"auth_uoslwo"="Upload";
+"auth_card_tis"="Please upload a photo of your ID first";
 
 "camera_tip1"="To ensure a smooth review, please pay attention to the following points when taking photos:";
 "camera_tip2"="Please place the four corners of your ID card inside the photo frame and take a complete photo.";

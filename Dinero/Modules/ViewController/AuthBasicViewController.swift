@@ -16,10 +16,12 @@ class AuthBasicViewController: BasicViewController {
     }()
     
     private lazy var confirmBtn: APPActivityButton = APPActivityButton.buildGradientLoadingButton(APPLanguageInsTool.loadLanguage("auth_btn"))
+    private(set) var _next_toelsl_map: [ChanPinAuthElement: String]?
     
-    init(certificationTitle title: String?) {
+    init(certificationTitle title: String?, nextAuthTitle next: [ChanPinAuthElement: String]? = nil) {
         super.init(nibName: nil, bundle: nil)
         self.title = title
+        self._next_toelsl_map = next
     }
     
     required init?(coder: NSCoder) {
@@ -35,6 +37,7 @@ class AuthBasicViewController: BasicViewController {
         super.buildPageUI()
         
         self.confirmBtn.corner(16)
+        self.confirmBtn.addTarget(self, action: #selector(clickNextBusjwk(sender: )), for: UIControl.Event.touchUpInside)
         
         self.view.addSubview(self.bottomsViwe)
         self.bottomsViwe.addSubview(self.confirmBtn)

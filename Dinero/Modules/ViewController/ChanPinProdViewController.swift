@@ -59,6 +59,7 @@ class ChanPinProdViewController: BasicViewController, AutoHiddenNavigationBar {
     private var protxost_tesat: String?
     private var _next_auhs_modelqkgs: Responded?
     private var _isRefreshwkql: Bool = false
+    private var _tiels_map: [ChanPinAuthElement: String] = [:]
     
     init(withCommodityIDNumber idNumber: String) {
         super.init(nibName: nil, bundle: nil)
@@ -244,6 +245,12 @@ class ChanPinProdViewController: BasicViewController, AutoHiddenNavigationBar {
                 self?._athsiwn_cousew.removeAll()
                 self?._athsiwn_cousew.append(contentsOf: _ops)
                 self?.contentVIew.reloadData()
+                self?._tiels_map.removeAll()
+                for item in _ops {
+                    if let _a = item.aged, let _key = ChanPinAuthElement(rawValue: _a) {
+                        self?._tiels_map[_key] = item.gendered
+                    }
+                }
             }
         } failure: {[weak self] _, _ in
             self?._isRefreshwkql = false
@@ -298,15 +305,15 @@ private extension ChanPinProdViewController {
         } else {
             switch authTpe {
             case .Certif_Query:
-                self.navigationController?.pushViewController(QueryQuestionwkViewController(certificationTitle: authTitle), animated: true)
+                self.navigationController?.pushViewController(QueryQuestionwkViewController(certificationTitle: authTitle, nextAuthTitle: self._tiels_map), animated: true)
             case .Certif_ID_Cosujward:
-                self.navigationController?.pushViewController(QueryQuestionwkViewController(certificationTitle: authTitle), animated: true)
+                self.navigationController?.pushViewController(CardAuthswlawViewController(certificationTitle: authTitle, nextAuthTitle: self._tiels_map), animated: true)
             case .Certif_Persopalsjnal_Inuywjfo:
-                self.navigationController?.pushViewController(QueryQuestionwkViewController(certificationTitle: authTitle), animated: true)
+                self.navigationController?.pushViewController(InfoAuthwlasoekVeControlController(certificationTitle: authTitle, nextAuthTitle: self._tiels_map), animated: true)
             case .Certif_Job_Info:
-                self.navigationController?.pushViewController(QueryQuestionwkViewController(certificationTitle: authTitle), animated: true)
+                self.navigationController?.pushViewController(QueryQuestionwkViewController(certificationTitle: authTitle, nextAuthTitle: self._tiels_map), animated: true)
             case .Certif_Contesdkcts:
-                self.navigationController?.pushViewController(QueryQuestionwkViewController(certificationTitle: authTitle), animated: true)
+                self.navigationController?.pushViewController(QueryQuestionwkViewController(certificationTitle: authTitle, nextAuthTitle: self._tiels_map), animated: true)
             case .Certif_BankkskCard:
                 self.navigationController?.pushViewController(QueryQuestionwkViewController(certificationTitle: authTitle), animated: true)
             }
@@ -340,7 +347,7 @@ extension ChanPinProdViewController: UICollectionViewDelegateFlowLayout, UIColle
         var h5_url: String? = _model.claude
         
         // 如果有认证项，优先跳转到认证
-        if _model.locations == 0, let _next_modl = self._next_auhs_modelqkgs {
+        if _model.locations == "0", let _next_modl = self._next_auhs_modelqkgs {
             _c_wur = ChanPinAuthElement(rawValue: _next_modl.aged ?? "") ?? ChanPinAuthElement.Certif_Query
             title = _next_modl.gendered
             h5_url = _next_modl.claude
