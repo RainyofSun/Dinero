@@ -35,7 +35,7 @@ class Memorization: BasicResponseModel, YYModel {
     
     /// 【重要】当组件为文本输入框时：
     /// 如果值为1，则强制打开数字键盘 ，其他值则为默认字符键盘
-    var vision: Int?
+    var vision: String?
     
     /// 可选值
     var gov: [Gov]?

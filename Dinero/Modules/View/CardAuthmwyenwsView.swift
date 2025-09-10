@@ -25,7 +25,9 @@ class CardAuthmwyenwsView: UIControl {
         super.init(frame: frame)
         
         self.updslwBtn.corner(21)
-        self.plackhesHoderimshView.corner(21)
+        self.plackhesHoderimshView.layer.cornerRadius = 21
+        self.plackhesHoderimshView.clipsToBounds = true
+        self.plackhesHoderimshView.contentMode = .scaleAspectFill
         
         self.addSubview(self.titleswjLa)
         self.addSubview(self.whiteVsjwkView)
@@ -62,23 +64,32 @@ class CardAuthmwyenwsView: UIControl {
     
     func refreshCarskwInfo(model: Eliminating, text: String?) {
         self.titleswjLa.text = text
-        if model.locations == "0" {
-            self.plackhesHoderimshView.image = UIImage(named: "Face")
+        if let _t = model.claude, let _t_url = URL(string: _t) {
+            self.plackhesHoderimshView.setImageWith(_t_url, placeholder: UIImage(named: "Face"), options: YYWebImageOptions.setImageWithFadeAnimation)
         } else {
-            if let _t = model.claude, let _t_url = URL(string: _t) {
-                self.plackhesHoderimshView.setImageWith(_t_url, placeholder: UIImage(named: "Face"), options: YYWebImageOptions.setImageWithFadeAnimation)
-            }
+            self.plackhesHoderimshView.image = UIImage(named: "Face")
+        }
+        
+        if model.locations == "1" {
+            self.refreshUpdaloejesColros()
         }
     }
     
     func refreshCFacesjwkswInfo(model: Trump, text: String?) {
         self.titleswjLa.text = text
-        if model.locations == "0" {
-            self.plackhesHoderimshView.image = UIImage(named: "front")
+        if let _t = model.claude, let _t_url = URL(string: _t) {
+            self.plackhesHoderimshView.setImageWith(_t_url, placeholder: UIImage(named: "front"), options: YYWebImageOptions.setImageWithFadeAnimation)
         } else {
-            if let _t = model.claude, let _t_url = URL(string: _t) {
-                self.plackhesHoderimshView.setImageWith(_t_url, placeholder: UIImage(named: "front"), options: YYWebImageOptions.setImageWithFadeAnimation)
-            }
+            self.plackhesHoderimshView.image = UIImage(named: "front")
         }
+        
+        if model.locations == "1" {
+            self.refreshUpdaloejesColros()
+        }
+    }
+    
+    func refreshUpdaloejesColros() {
+        self.updslwBtn.hideGradientLayer()
+        self.updslwBtn.backgroundColor = UIColor.hexStringColor(hexString: "#CCCCCC")
     }
 }

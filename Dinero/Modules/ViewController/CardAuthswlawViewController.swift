@@ -55,7 +55,7 @@ class CardAuthswlawViewController: AuthBasicViewController {
                 self?.faceskjfhyeView.refreshCFacesjwkswInfo(model: _nsk, text: _dmsl.face_msg)
             }
             
-            self?.isFaceskwAuth = _dmsl.trump?.locations == "1"
+            self?.isFaceskwAuth = _dmsl.eliminating?.locations == "1"
             self?.cardks_indo_model = _dmsl
         }
     }
@@ -76,7 +76,7 @@ class CardAuthswlawViewController: AuthBasicViewController {
             return
         }
         
-        self.navigationController?.jk.popCurrentAndPush(vc: InfoAuthwlasoekVeControlController(certificationTitle: self._next_toelsl_map?[ChanPinAuthElement.Certif_Persopalsjnal_Inuywjfo], nextAuthTitle: self._next_toelsl_map), animated: true)
+        self.navigationController?.jk.popCurrentAndPush(vc: InfoAuthwlasoekVeControlController(certificationTitle: self._next_toelsl_map?[ChanPinAuthElement.Certif_Persopalsjnal_Inuywjfo], nextAuthTitle: self._next_toelsl_map, style: InfoAusekTywsStyle.PersonInskwAutsh), animated: true)
     }
     
     @objc func clickCardAuth(sender: CardAuthmwyenwsView) {
@@ -158,7 +158,7 @@ private extension CardAuthswlawViewController {
             
             if __self_sek.isFaceskwAuth {
                 BuryShuJuTool.riskControlRepoeri(type: TongJiEventUploadStyle.TJ_TakingFace, beginTime: __self_sek.buryingStartTime, endTime: Date().jk.dateToTimeStamp())
-                __self_sek.navigationController?.jk.popCurrentAndPush(vc: InfoAuthwlasoekVeControlController(certificationTitle: __self_sek._next_toelsl_map?[ChanPinAuthElement.Certif_Persopalsjnal_Inuywjfo], nextAuthTitle: __self_sek._next_toelsl_map), animated: true)
+                __self_sek.navigationController?.jk.popCurrentAndPush(vc: InfoAuthwlasoekVeControlController(certificationTitle: __self_sek._next_toelsl_map?[ChanPinAuthElement.Certif_Persopalsjnal_Inuywjfo], nextAuthTitle: __self_sek._next_toelsl_map, style: InfoAusekTywsStyle.PersonInskwAutsh), animated: true)
             } else {
                 guard let _dis = res.jsonDict, let _as_resils = CardAuthResulwdMowsl.model(with: _dis) else {
                     return
@@ -179,12 +179,15 @@ private extension CardAuthswlawViewController {
                         APPNetRequestManager.afnReqeustType(NetworkRequestConfig.defaultRequestConfig("immediatelying/issn", requestParams: _indo.infoPasjwsDicts)) { (task: URLSessionDataTask, res :APPSuccessResponse) in
                             sender.stopAnimation()
                             BuryShuJuTool.riskControlRepoeri(type: TongJiEventUploadStyle.TJ_TakingFace, beginTime: __self_sek.buryingStartTime, endTime: Date().jk.dateToTimeStamp())
-                            __self_sek.cardks_indo_model?.trump?.locations = "1"
+                            __self_sek.cardks_indo_model?.eliminating?.locations = "1"
                             __self_sek.isFaceskwAuth = true
                             _indo.dismissPop()
-                        }                        
+                            __self_sek.cardVjswirye.refreshUpdaloejesColros()
+                        } failure: { _, _ in
+                            sender.stopAnimation()
+                        }
                     }
-
+ 
                 } else {
                     BuryShuJuTool.riskControlRepoeri(type: TongJiEventUploadStyle.TJ_IDCardAlert, beginTime: __self_sek.buryingStartTime, endTime: Date().jk.dateToTimeStamp())
                     __self_sek.cardks_indo_model?.eliminating?.locations = "1"

@@ -309,13 +309,13 @@ private extension ChanPinProdViewController {
             case .Certif_ID_Cosujward:
                 self.navigationController?.pushViewController(CardAuthswlawViewController(certificationTitle: authTitle, nextAuthTitle: self._tiels_map), animated: true)
             case .Certif_Persopalsjnal_Inuywjfo:
-                self.navigationController?.pushViewController(InfoAuthwlasoekVeControlController(certificationTitle: authTitle, nextAuthTitle: self._tiels_map), animated: true)
+                self.navigationController?.pushViewController(InfoAuthwlasoekVeControlController(certificationTitle: authTitle, nextAuthTitle: self._tiels_map, style: InfoAusekTywsStyle.PersonInskwAutsh), animated: true)
             case .Certif_Job_Info:
-                self.navigationController?.pushViewController(QueryQuestionwkViewController(certificationTitle: authTitle, nextAuthTitle: self._tiels_map), animated: true)
+                self.navigationController?.pushViewController(InfoAuthwlasoekVeControlController(certificationTitle: authTitle, nextAuthTitle: self._tiels_map, style: InfoAusekTywsStyle.WorkIskwlCAuths), animated: true)
             case .Certif_Contesdkcts:
-                self.navigationController?.pushViewController(QueryQuestionwkViewController(certificationTitle: authTitle, nextAuthTitle: self._tiels_map), animated: true)
+                self.navigationController?.pushViewController(SuwjConsyakwUserViewController(certificationTitle: authTitle, nextAuthTitle: self._tiels_map), animated: true)
             case .Certif_BankkskCard:
-                self.navigationController?.pushViewController(QueryQuestionwkViewController(certificationTitle: authTitle), animated: true)
+                self.navigationController?.pushViewController(InfoAuthwlasoekVeControlController(certificationTitle: authTitle, nextAuthTitle: self._tiels_map, style: InfoAusekTywsStyle.BanskCarskWis), animated: true)
             }
         }
     }

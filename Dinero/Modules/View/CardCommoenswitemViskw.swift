@@ -15,7 +15,7 @@ protocol InfoUnitProtoslwpProtocl: AnyObject {
 class CardCommoenswitemViskw: UIView {
 
     weak open var unitDelelsjwu: InfoUnitProtoslwpProtocl?
-    open var unttisTupe: (cacheKeu:String, choise: [TYXuanZeModel]?)?
+    open var unttisTupe: (cacheKeu:String?, choise: [Gov]?)?
     
     private lazy var dotskwk: UIView = {
         let view = UIView(frame: CGRectZero)
@@ -32,6 +32,8 @@ class CardCommoenswitemViskw: UIView {
         view.borderStyle = .none
         view.layer.borderColor = Primary_Color1.cgColor
         view.layer.borderWidth = 1
+        view.textColor = Primary_Color_Black
+        view.font = UIFont.interFont(size: 14, fontStyle: InterFontWeight.Regular)
         return view
     }()
     
@@ -51,8 +53,9 @@ class CardCommoenswitemViskw: UIView {
         if inputsYwhdk == RenZhengElemeent.RZ_Enum {
             let imgView = UIImageView(image: UIImage(named: "list_arrow"))
             self.inputTextFiles.rightView = imgView
-            self.inputTextFiles.rightViewMode = .always
         }
+        
+        self.inputTextFiles.rightViewMode = inputsYwhdk == .RZ_Enum ? .always : .never
         
         self.dotskwk.snp.makeConstraints { make in
             make.centerY.equalTo(self.titleLans)
@@ -85,6 +88,17 @@ class CardCommoenswitemViskw: UIView {
         if let _ws = tex {
             self.inputTextFiles.text = _ws
         }
+    }
+    
+    func reoswmInooskwunirModel(mdoel: Memorization) {
+        self.unttisTupe = (mdoel.tell, mdoel.gov)
+        if let _places = mdoel.weeks {
+            self.inputTextFiles.attributedPlaceholder = NSAttributedString(string: _places, attributes: [.foregroundColor: Primary_Color_Black.withAlphaComponent(0.6), .font: UIFont.interFont(size: 14, fontStyle: InterFontWeight.Regular)])
+        }
+        
+        self.reloaskwTiels(titles: mdoel.gendered, inspwText: mdoel.restricting)
+        
+        self.inputTextFiles.keyboardType = mdoel.vision == "1" ? .numberPad : .default
     }
 }
 
