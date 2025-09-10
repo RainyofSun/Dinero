@@ -43,10 +43,11 @@ enum ChanPinAuthElement: String {
 }
 
 enum RenZhengElemeent: String {
-    case RZ_Enum = "economica"
-    case RZ_Text = "economicb"
-    case RZ_City = "economicc"
-    case RZ_Contacts = "economicd"
+    case RZ_Enum = "economicb"
+    case RZ_Text = "economica"
+    case RZ_City = "economice"
+    case RZ_Time = "economicc"
+    case RZ_Tips = "economicd"
 }
 
 let APP_SETTING: String = "ios://Dine.roFu.erza/gap"

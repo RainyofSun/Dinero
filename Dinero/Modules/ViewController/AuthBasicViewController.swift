@@ -15,7 +15,7 @@ class AuthBasicViewController: BasicViewController {
         return view
     }()
     
-    private lazy var confirmBtn: APPActivityButton = APPActivityButton.buildGradientLoadingButton(APPLanguageInsTool.loadLanguage("auth_btn"))
+    private(set) lazy var confirmBtn: APPActivityButton = APPActivityButton.buildGradientLoadingButton(APPLanguageInsTool.loadLanguage("auth_btn"))
     private(set) var _next_toelsl_map: [ChanPinAuthElement: String]?
     
     init(certificationTitle title: String?, nextAuthTitle next: [ChanPinAuthElement: String]? = nil) {

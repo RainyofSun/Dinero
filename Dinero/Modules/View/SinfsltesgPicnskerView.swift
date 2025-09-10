@@ -18,7 +18,7 @@ class SinfsltesgPicnskerView: BasicPresentView {
         style.hiddenDoneBtn = true
         style.hiddenCancelBtn = true
         style.hiddenTitleLine = true
-        style.pickerColor = .white
+        style.pickerColor = .clear
         style.pickerTextColor = UIColor.hexStringColor(hexString: "#999999")
         style.pickerTextFont = UIFont.interFont(size: 14, fontStyle: InterFontWeight.Medium)
         style.selectRowTextColor = Primary_Color1
@@ -28,14 +28,17 @@ class SinfsltesgPicnskerView: BasicPresentView {
         return _pickView
     }()
     
-    private lazy var pwoaskwerContentView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: jk_kScreenW - LAYOUT_MIN_UNIT * 8, height: 250))
+    private lazy var pwoaskwerContentView: UIView = {
+        let voew = UIView(frame: CGRect(x: 0, y: 0, width: jk_kScreenW - LAYOUT_MIN_UNIT * 8, height: 250))
+        voew.backgroundColor = .clear
+        return voew
+    }()
     
     override func buildPresentView() {
         super.buildPresentView()
         self.titleLab.text = APPLanguageInsTool.loadLanguage("address_sel")
         
         self.contentView.addSubview(self.pwoaskwerContentView)
-        self.suwjeypickerView.addPicker(to: self.pwoaskwerContentView)
         
         self.suwjeypickerView.singleChangeBlock = {[weak self] (mods: BRTextModel?, ids: Int) in
             self?.seleshwha_goskw = Gov()
@@ -71,11 +74,11 @@ class SinfsltesgPicnskerView: BasicPresentView {
         
         moslw.forEach { item in
             if let _ke = item.lawrence, let _vsm = item.rans {
-                sowksm_arrsuq.append([_ke: _vsm])
+                sowksm_arrsuq.append(["code": _ke, "text": _vsm])
             }
         }
         
         self.suwjeypickerView.dataSourceArr = NSArray.br_modelArray(withJson: sowksm_arrsuq, mapper: nil)
-        self.suwjeypickerView.reloadData()
+        self.suwjeypickerView.addPicker(to: self.pwoaskwerContentView)
     }
 }

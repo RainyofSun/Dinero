@@ -14,13 +14,6 @@ enum InfoAusekTywsStyle {
 }
 
 class InfoAuthwlasoekVeControlController: AuthBasicViewController {
-
-    private lazy var contentViewswjhs: UIView = {
-        let view = UIView(frame: CGRectZero)
-        view.backgroundColor = .white
-        view.corner(16)
-        return view
-    }()
     
     private var info_resw_tupe: (requesjUrls: String, saveUrlslw: String, style: TongJiEventUploadStyle)?
     private var infosw_paswka: [String: String] = [:]
@@ -46,16 +39,17 @@ class InfoAuthwlasoekVeControlController: AuthBasicViewController {
     
     override func buildPageUI() {
         super.buildPageUI()
-        self.basicScrollContentView.addSubview(self.contentViewswjhs)
+        self.basicScrollContentView.showsVerticalScrollIndicator = false
+        self.basicScrollContentView.backgroundColor = .white
+        self.basicScrollContentView.corner(16)
     }
     
     override func layoutPageViews() {
         super.layoutPageViews()
-        self.contentViewswjhs.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(jk_kNavFrameH + LAYOUT_MIN_UNIT * 5)
-            make.left.equalToSuperview().offset(LAYOUT_MIN_UNIT * 4)
-            make.width.equalTo(jk_kScreenW - LAYOUT_MIN_UNIT * 8)
-            make.height.greaterThanOrEqualTo(100)
+        self.basicScrollContentView.snp.remakeConstraints { make in
+            make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 4)
+            make.top.equalToSuperview().offset(LAYOUT_MIN_UNIT * 4 + jk_kNavFrameH)
+            make.bottom.equalTo(self.confirmBtn.snp.top).offset(-LAYOUT_MIN_UNIT * 4)
         }
     }
     
@@ -82,8 +76,9 @@ class InfoAuthwlasoekVeControlController: AuthBasicViewController {
             return
         }
         
+        self.infosw_paswka["conservative"] = self.pppp_sid
         sender.startAnimation()
-        
+        APPCocoaLog.debug("------- \n --------- \(self.infosw_paswka) ---------")
         APPNetRequestManager.afnReqeustType(NetworkRequestConfig.defaultRequestConfig(_tup.saveUrlslw, requestParams: self.infosw_paswka)) {[weak self] (task: URLSessionDataTask, res: APPSuccessResponse) in
             sender.stopAnimation()
             guard let __sels_wk = self else {
@@ -92,11 +87,11 @@ class InfoAuthwlasoekVeControlController: AuthBasicViewController {
             
             BuryShuJuTool.riskControlRepoeri(type: _tup.style, beginTime: __sels_wk.buryingStartTime, endTime: Date().jk.dateToTimeStamp())
             if __sels_wk._nesjj_syws == .Certif_Job_Info {
-                __sels_wk.navigationController?.popToViewController(InfoAuthwlasoekVeControlController(certificationTitle: __sels_wk._next_toelsl_map?[__sels_wk._nesjj_syws], nextAuthTitle: __sels_wk._next_toelsl_map, style: .WorkIskwlCAuths), animated: true)
+                __sels_wk.navigationController?.jk.popCurrentAndPush(vc:InfoAuthwlasoekVeControlController(certificationTitle: __sels_wk._next_toelsl_map?[__sels_wk._nesjj_syws], nextAuthTitle: __sels_wk._next_toelsl_map, style: .WorkIskwlCAuths), animated: true)
             }
             
             if __sels_wk._nesjj_syws == .Certif_Contesdkcts {
-                __sels_wk.navigationController?.popToViewController(SuwjConsyakwUserViewController(certificationTitle: __sels_wk._next_toelsl_map?[__sels_wk._nesjj_syws], nextAuthTitle: __sels_wk._next_toelsl_map), animated: true)
+                __sels_wk.navigationController?.jk.popCurrentAndPush(vc:SuwjConsyakwUserViewController(certificationTitle: __sels_wk._next_toelsl_map?[__sels_wk._nesjj_syws], nextAuthTitle: __sels_wk._next_toelsl_map), animated: true)
             }
             
             if __sels_wk._nesjj_syws == .Certif_BankkskCard {
@@ -117,7 +112,7 @@ private extension InfoAuthwlasoekVeControlController {
             let view = CardCommoenswitemViskw(frame: CGRectZero, inputsYwhdk: RenZhengElemeent.init(rawValue: cones.ease ?? "") ?? .RZ_Enum)
             view.reoswmInooskwunirModel(mdoel: cones)
             view.unitDelelsjwu = self
-            self.contentViewswjhs.addSubview(view)
+            self.basicScrollContentView.addSubview(view)
             if let _kesu = cones.tell, let _valsw = cones.restricting {
                 self.infosw_paswka[_kesu] = _valsw
             }
@@ -125,19 +120,20 @@ private extension InfoAuthwlasoekVeControlController {
             if let _top = _top_sawksuej {
                 if index == modls.count - 1 {
                     view.snp.makeConstraints { make in
-                        make.horizontalEdges.equalToSuperview()
-                        make.top.equalTo(_top.snp.bottom).offset(LAYOUT_MIN_UNIT * 2.5)
+                        make.horizontalEdges.equalTo(_top)
+                        make.top.equalTo(_top.snp.bottom).offset(LAYOUT_MIN_UNIT * 4)
                         make.bottom.equalToSuperview().offset(-LAYOUT_MIN_UNIT * 4)
                     }
                 } else {
                     view.snp.makeConstraints { make in
-                        make.horizontalEdges.equalToSuperview()
-                        make.top.equalTo(_top.snp.bottom).offset(LAYOUT_MIN_UNIT * 2.5)
+                        make.horizontalEdges.equalTo(_top)
+                        make.top.equalTo(_top.snp.bottom).offset(LAYOUT_MIN_UNIT * 4)
                     }
                 }
             } else {
                 view.snp.makeConstraints { make in
-                    make.horizontalEdges.equalToSuperview()
+                    make.left.equalToSuperview()
+                    make.width.equalTo(jk_kScreenW - LAYOUT_MIN_UNIT * 8)
                     make.top.equalToSuperview().offset(LAYOUT_MIN_UNIT * 4)
                 }
             }
@@ -157,6 +153,7 @@ extension InfoAuthwlasoekVeControlController: InfoUnitProtoslwpProtocl {
         
         if itemiew.renzhensjakwStyle == .RZ_Enum {
             let view: SinfsltesgPicnskerView = SinfsltesgPicnskerView(frame: UIScreen.main.bounds)
+            view.reloadSingsketswjajMods(moslw: _gos)
             UIDevice.current.keyWindow().addSubview(view)
             view.clickConfirmClosure = {[weak self] (popView: BasicPresentView, sender: APPActivityButton) in
                 guard let _vswe = popView as? SinfsltesgPicnskerView else {
@@ -177,6 +174,26 @@ extension InfoAuthwlasoekVeControlController: InfoUnitProtoslwpProtocl {
         
         if itemiew.renzhensjakwStyle == .RZ_City {
             
+        }
+        
+        if itemiew.renzhensjakwStyle == .RZ_Time {
+            let timePisker: BirthdayPsokeViwjsjVi = BirthdayPsokeViwjsjVi(frame: UIScreen.main.bounds)
+            UIDevice.current.keyWindow().addSubview(timePisker)
+            timePisker.clickConfirmClosure = {[weak self] (popsjw: BasicPresentView, sender: APPActivityButton) in
+                guard let _pps_tims = popsjw as? BirthdayPsokeViwjsjVi, let _dtesjw = _pps_tims.selectedDate else {
+                    return
+                }
+                
+                if let _keus = itemiew.unttisTupe?.cacheKeu {
+                    self?.infosw_paswka[_keus] = _dtesjw
+                }
+                
+                itemiew.reloaskwTiels(titles: nil, inspwText: _dtesjw)
+                
+                popsjw.dismissPop()
+            }
+            
+            timePisker.showPresent()
         }
     }
     
