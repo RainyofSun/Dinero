@@ -86,8 +86,12 @@ class CardUsesidnwIfosKsuwjPoseiView: BasicPresentView {
 }
 
 extension CardUsesidnwIfosKsuwjPoseiView: InfoUnitProtoslwpProtocl {
-    func toushckawUniswInfoskw(itemiew: CardCommoenswitemViskw) {
-        if itemiew.renzhensjakwStyle == .RZ_Enum {
+    func toushckawUniswInfoskw(itemiew: UIView) {
+        guard let itemiessww = itemiew as? CardCommoenswitemViskw else {
+            return
+        }
+        
+        if itemiessww.renzhensjakwStyle == .RZ_Enum {
             // 生日
             guard let _super_siwk = self.superview else {
                 return
@@ -131,8 +135,12 @@ extension CardUsesidnwIfosKsuwjPoseiView: InfoUnitProtoslwpProtocl {
         }
     }
     
-    func didsWmswEnddiejng(itemViw: CardCommoenswitemViskw, inputVws: String?) {
-        guard let _kes = itemViw.unttisTupe?.cacheKeu else {
+    func didsWmswEnddiejng(itemViw: UIView, inputVws: String?) {
+        guard let itemiessww = itemViw as? CardCommoenswitemViskw else {
+            return
+        }
+        
+        guard let _kes = itemiessww.unttisTupe?.cacheKeu else {
             return
         }
         

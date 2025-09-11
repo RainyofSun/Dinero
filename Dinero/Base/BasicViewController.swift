@@ -42,6 +42,7 @@ class BasicViewController: UIViewController {
     }
 
     public func buildPageUI() {
+        self.basicScrollContentView.showsVerticalScrollIndicator = false
         self.view.backgroundColor = UIColor.hexStringColor(hexString: "#FFF2EF")
         self.view.addSubview(self.gradientView)
         self.view.addSubview(self.basicScrollContentView)

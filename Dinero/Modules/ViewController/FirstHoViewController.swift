@@ -19,20 +19,19 @@ class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
         super.viewWillAppear(animated)
         self.pageNetRequest()
     }
-    
+//    4080513067
     override func buildPageUI() {
         NotificationCenter.default.addObserver(self, selector: #selector(refreshHowmswl), name: NSNotification.Name.init("refreshHome"), object: nil)
         super.buildPageUI()
-        
-        self.basicScrollContentView.isPagingEnabled = true
-        self.basicScrollContentView.isScrollEnabled = false
         
         self.basicScrollContentView.isHidden = true
         self.bigCard.bihdelegate = self
         self.smallCard.samllDelesjek = self
         self.basicScrollContentView.addSubview(self.bigCard)
-        self.basicScrollContentView.addSubview(self.smallCard)
+        self.view.addSubview(self.smallCard)
         self.changeTabBarBGColor(isClear: true)
+        // 城市列表
+        self.catchsCityListw()
     }
     
     override func layoutPageViews() {
@@ -44,13 +43,14 @@ class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
         
         self.bigCard.snp.makeConstraints { make in
             make.left.top.equalToSuperview()
-            make.size.equalTo(self.view.size)
+            make.size.equalTo(CGSize(width: jk_kScreenW, height: self.bigCard.image?.size.height ?? jk_kScreenH))
+            make.bottom.equalToSuperview()
         }
         
         self.smallCard.snp.makeConstraints { make in
-            make.top.size.equalTo(self.bigCard)
-            make.left.equalTo(self.bigCard.snp.right)
-            make.right.equalToSuperview()
+            make.top.width.equalTo(self.basicScrollContentView)
+            make.left.equalTo(self.basicScrollContentView.snp.right)
+            make.bottom.equalToSuperview().offset(-(jk_kTabbarFrameH + 10))
         }
     }
     
@@ -89,9 +89,34 @@ class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
     
     func layoutPageUI(isBig: Bool) {
         if isBig {
-            self.basicScrollContentView.setContentOffsetX(CGFloat.zero, animated: true)
+            UIView.animate(withDuration: 0.3) {
+                self.basicScrollContentView.snp.remakeConstraints { make in
+                    make.edges.equalToSuperview()
+                }
+                
+                self.smallCard.snp.remakeConstraints { make in
+                    make.top.width.equalTo(self.basicScrollContentView)
+                    make.left.equalTo(self.basicScrollContentView.snp.right)
+                    make.bottom.equalToSuperview().offset(-(jk_kTabbarFrameH + 10))
+                }
+                
+                self.view.layoutIfNeeded()
+            }
         } else {
-            self.basicScrollContentView.setContentOffsetX(jk_kScreenW, animated: true)
+            UIView.animate(withDuration: 0.3) {
+                self.basicScrollContentView.snp.remakeConstraints { make in
+                    make.verticalEdges.equalToSuperview()
+                    make.left.equalToSuperview().offset(-jk_kScreenW)
+                    make.width.equalTo(jk_kScreenW)
+                }
+                
+                self.smallCard.snp.remakeConstraints { make in
+                    make.horizontalEdges.top.equalToSuperview()
+                    make.bottom.equalToSuperview().offset(-(jk_kTabbarFrameH + 10))
+                }
+                
+                self.view.layoutIfNeeded()
+            }
         }
         
         changeTabBarBGColor(isClear: isBig)
@@ -122,6 +147,16 @@ class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
     
     @objc func refreshHowmswl() {
         self.pageNetRequest()
+    }
+    
+    func catchsCityListw() {
+        APPNetRequestManager.afnReqeustType(NetworkRequestConfig.defaultRequestConfig("v3/certify/city-init", requestParams: [:])) {(task: URLSessionDataTask, res: APPSuccessResponse) in
+            guard let _json_dict = res.jsonDict as? NSDictionary, let _json = _json_dict.modelToJSONString() else {
+                return
+            }
+            
+            CityModeswkah.saveCirmapsjSownTosDisak(_json)
+        }
     }
 }
 

@@ -8,8 +8,8 @@
 import UIKit
 
 protocol InfoUnitProtoslwpProtocl: AnyObject {
-    func toushckawUniswInfoskw(itemiew: CardCommoenswitemViskw)
-    func didsWmswEnddiejng(itemViw: CardCommoenswitemViskw, inputVws: String?)
+    func toushckawUniswInfoskw(itemiew: UIView)
+    func didsWmswEnddiejng(itemViw: UIView, inputVws: String?)
 }
 
 class CardCommoenswitemViskw: UIView {
@@ -24,8 +24,8 @@ class CardCommoenswitemViskw: UIView {
         return view
     }()
     
-    private lazy var titleLans: UILabel = UILabel.buildNormalTextLabel("", t_color: Primary_Color_Black, font: UIFont.interFont(size: 16, fontStyle: InterFontWeight.Medium))
-    private lazy var inputTextFiles: ForbidActionTextFiled = {
+    private(set) lazy var titleLans: UILabel = UILabel.buildNormalTextLabel("", t_color: Primary_Color_Black, font: UIFont.interFont(size: 16, fontStyle: InterFontWeight.Medium))
+    private(set) lazy var inputTextFiles: ForbidActionTextFiled = {
         let view = ForbidActionTextFiled(frame: CGRectZero)
         view.backgroundColor = UIColor.hexStringColor(hexString: "#FFF6CA")
         view.corner(22)
@@ -96,7 +96,21 @@ class CardCommoenswitemViskw: UIView {
             self.inputTextFiles.attributedPlaceholder = NSAttributedString(string: _places, attributes: [.foregroundColor: Primary_Color_Black.withAlphaComponent(0.6), .font: UIFont.interFont(size: 14, fontStyle: InterFontWeight.Regular)])
         }
         
-        self.reloaskwTiels(titles: mdoel.gendered, inspwText: mdoel.restricting)
+        var str: String? = ""
+        if let _mode_dasw = mdoel.restricting {
+            if let _chosiwkdd = mdoel.gov, !_chosiwkdd.isEmpty {
+              for item in _chosiwkdd {
+                  if item.lawrence == _mode_dasw {
+                      str = item.rans
+                      break
+                  }
+              }
+          } else {
+              str = _mode_dasw
+          }
+        }
+        
+        self.reloaskwTiels(titles: mdoel.gendered, inspwText: str)
         
         self.inputTextFiles.keyboardType = mdoel.vision == "1" ? .numberPad : .default
     }

@@ -83,3 +83,4 @@
 "time_tip"="Por favor seleccione una hora";
 "mine_title" = "Mi";
 "order_title" = "Lista de pedidos";
+"const_tip"="La aplicación permite acceder a la lista de contactos. Sube fácilmente la información de contacto para simplificar los pasos y agilizar la solicitud del préstamo.";

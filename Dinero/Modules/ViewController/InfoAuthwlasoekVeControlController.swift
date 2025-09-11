@@ -29,6 +29,7 @@ class InfoAuthwlasoekVeControlController: AuthBasicViewController {
             self.info_resw_tupe = ("immediatelying/ioakimoglou", "immediatelying/maria", .TJ_JobInfo)
             self._nesjj_syws = .Certif_Contesdkcts
         case .BanskCarskWis:
+            self._nesjj_syws = .Certif_BankkskCard
             self.info_resw_tupe = ("immediatelying/elite", "immediatelying/cycles", .TJ_BankInfo)
         }
     }
@@ -39,17 +40,24 @@ class InfoAuthwlasoekVeControlController: AuthBasicViewController {
     
     override func buildPageUI() {
         super.buildPageUI()
-        self.basicScrollContentView.showsVerticalScrollIndicator = false
         self.basicScrollContentView.backgroundColor = .white
         self.basicScrollContentView.corner(16)
     }
     
     override func layoutPageViews() {
         super.layoutPageViews()
-        self.basicScrollContentView.snp.remakeConstraints { make in
-            make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 4)
-            make.top.equalToSuperview().offset(LAYOUT_MIN_UNIT * 4 + jk_kNavFrameH)
-            make.bottom.equalTo(self.confirmBtn.snp.top).offset(-LAYOUT_MIN_UNIT * 4)
+        if self.info_resw_tupe?.style == .TJ_BankInfo {
+            self.basicScrollContentView.snp.remakeConstraints { make in
+                make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 4)
+                make.top.equalToSuperview().offset(LAYOUT_MIN_UNIT * 4 + jk_kNavFrameH)
+                make.height.equalTo(320)
+            }
+        } else {
+            self.basicScrollContentView.snp.remakeConstraints { make in
+                make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 4)
+                make.top.equalToSuperview().offset(LAYOUT_MIN_UNIT * 4 + jk_kNavFrameH)
+                make.bottom.equalTo(self.confirmBtn.snp.top).offset(-LAYOUT_MIN_UNIT * 4)
+            }
         }
     }
     
@@ -144,14 +152,18 @@ private extension InfoAuthwlasoekVeControlController {
 }
 
 extension InfoAuthwlasoekVeControlController: InfoUnitProtoslwpProtocl {
-    func toushckawUniswInfoskw(itemiew: CardCommoenswitemViskw) {
-        self.view.endEditing(true)
-        
-        guard let _gos = itemiew.unttisTupe?.choise else {
+    func toushckawUniswInfoskw(itemiew: UIView) {
+        guard let itemiessww = itemiew as? CardCommoenswitemViskw else {
             return
         }
         
-        if itemiew.renzhensjakwStyle == .RZ_Enum {
+        self.view.endEditing(true)
+        
+        guard let _gos = itemiessww.unttisTupe?.choise else {
+            return
+        }
+        
+        if itemiessww.renzhensjakwStyle == .RZ_Enum {
             let view: SinfsltesgPicnskerView = SinfsltesgPicnskerView(frame: UIScreen.main.bounds)
             view.reloadSingsketswjajMods(moslw: _gos)
             UIDevice.current.keyWindow().addSubview(view)
@@ -160,11 +172,11 @@ extension InfoAuthwlasoekVeControlController: InfoUnitProtoslwpProtocl {
                     return
                 }
                 
-                if let _k = itemiew.unttisTupe?.cacheKeu, let _codes = _vswe.seleshwha_goskw?.lawrence {
+                if let _k = itemiessww.unttisTupe?.cacheKeu, let _codes = _vswe.seleshwha_goskw?.lawrence {
                     self?.infosw_paswka[_k] = _codes
                 }
                 
-                itemiew.reloaskwTiels(titles: nil, inspwText: _vswe.seleshwha_goskw?.rans)
+                itemiessww.reloaskwTiels(titles: nil, inspwText: _vswe.seleshwha_goskw?.rans)
                 
                 popView.dismissPop()
             }
@@ -172,11 +184,11 @@ extension InfoAuthwlasoekVeControlController: InfoUnitProtoslwpProtocl {
             view.showPresent()
         }
         
-        if itemiew.renzhensjakwStyle == .RZ_City {
+        if itemiessww.renzhensjakwStyle == .RZ_City {
             
         }
         
-        if itemiew.renzhensjakwStyle == .RZ_Time {
+        if itemiessww.renzhensjakwStyle == .RZ_Time {
             let timePisker: BirthdayPsokeViwjsjVi = BirthdayPsokeViwjsjVi(frame: UIScreen.main.bounds)
             UIDevice.current.keyWindow().addSubview(timePisker)
             timePisker.clickConfirmClosure = {[weak self] (popsjw: BasicPresentView, sender: APPActivityButton) in
@@ -184,11 +196,11 @@ extension InfoAuthwlasoekVeControlController: InfoUnitProtoslwpProtocl {
                     return
                 }
                 
-                if let _keus = itemiew.unttisTupe?.cacheKeu {
+                if let _keus = itemiessww.unttisTupe?.cacheKeu {
                     self?.infosw_paswka[_keus] = _dtesjw
                 }
                 
-                itemiew.reloaskwTiels(titles: nil, inspwText: _dtesjw)
+                itemiessww.reloaskwTiels(titles: nil, inspwText: _dtesjw)
                 
                 popsjw.dismissPop()
             }
@@ -197,8 +209,12 @@ extension InfoAuthwlasoekVeControlController: InfoUnitProtoslwpProtocl {
         }
     }
     
-    func didsWmswEnddiejng(itemViw: CardCommoenswitemViskw, inputVws: String?) {
-        if let _tt = inputVws, let _skwk = itemViw.unttisTupe?.cacheKeu {
+    func didsWmswEnddiejng(itemViw: UIView, inputVws: String?) {
+        guard let itemiessww = itemViw as? CardCommoenswitemViskw else {
+            return
+        }
+        
+        if let _tt = inputVws, let _skwk = itemiessww.unttisTupe?.cacheKeu {
             self.infosw_paswka[_skwk] = _tt
         }
     }

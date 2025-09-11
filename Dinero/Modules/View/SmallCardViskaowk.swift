@@ -16,12 +16,17 @@ class SmallCardViskaowk: UIView {
 
     weak open var samllDelesjek: SmallCaskwiApplyProtocol?
     
-    private lazy var logoView: ProductLogosjVies = ProductLogosjVies(frame: CGRectZero)
+    private lazy var logoView: ProductLogosjVies = ProductLogosjVies(frame: CGRectZero, logoSize: CGSize(width: 33, height: 33))
     private lazy var bgImgView: UIImageView = UIImageView(image: UIImage(named: "home_small"))
     private lazy var tipLab: UILabel = UILabel.buildNormalTextLabel("", t_color: UIColor.white, font: UIFont.systemFont(ofSize: 14))
     private lazy var amountskdLab: JianBianLab = {
+        var fontSize = 64.0
+        if UIDevice.jk.isIpad() || jk_kScreenW <= 414 {
+            fontSize = 50.0
+        }
+        
         let view = JianBianLab(frame: CGRectZero)
-        view.font = UIFont.interFont(size: 64, fontStyle: InterFontWeight.Regular_Black_Italic)
+        view.font = UIFont.interFont(size: fontSize, fontStyle: InterFontWeight.Regular_Black_Italic)
         view.strokeColor = UIColor.white
         view.gradientColors = [UIColor.hexStringColor(hexString: "#D24D5D"), UIColor.hexStringColor(hexString: "#5C1C35")]
         view.strokeWidth = 6.0
@@ -70,7 +75,8 @@ class SmallCardViskaowk: UIView {
         
         self.logoView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(LAYOUT_MIN_UNIT * 4)
-            make.top.equalToSuperview().offset(50)
+            make.top.equalToSuperview().offset(UIDevice.jk.isIpad() ? 20 : 50)
+            make.height.equalTo(35)
         }
         
         self.bgImgView.snp.makeConstraints { make in
@@ -81,7 +87,7 @@ class SmallCardViskaowk: UIView {
         
         self.tipLab.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(LAYOUT_MIN_UNIT * 8)
+            make.top.equalToSuperview().offset((jk_kScreenW - 32) * 0.071)
         }
         
         self.amountskdLab.snp.makeConstraints { make in
@@ -96,7 +102,7 @@ class SmallCardViskaowk: UIView {
         
         self.applyBtn.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 9)
-            make.top.equalTo(self.pInfoView.snp.bottom).offset(LAYOUT_MIN_UNIT * 2.5)
+            make.top.equalTo(self.pInfoView.snp.bottom).offset(UIDevice.jk.isIpad() ? LAYOUT_MIN_UNIT : LAYOUT_MIN_UNIT * 2.5)
             make.height.equalTo(50)
         }
         
@@ -104,10 +110,19 @@ class SmallCardViskaowk: UIView {
             make.edges.equalToSuperview()
         }
         
-        self.listView.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview()
-            make.top.equalTo(self.bgImgView.snp.bottom).offset(LAYOUT_MIN_UNIT * 1.5)
-            make.bottom.equalToSuperview().offset(-LAYOUT_MIN_UNIT)
+        if UIDevice.jk.isIpad() {
+            self.listView.snp.makeConstraints { make in
+                make.horizontalEdges.equalToSuperview()
+                make.top.equalTo(self.bgImgView.snp.bottom).offset(LAYOUT_MIN_UNIT * 1.5)
+                make.height.greaterThanOrEqualTo(330)
+                make.bottom.equalToSuperview()
+            }
+        } else {
+            self.listView.snp.makeConstraints { make in
+                make.horizontalEdges.equalToSuperview()
+                make.top.equalTo(self.bgImgView.snp.bottom).offset(LAYOUT_MIN_UNIT * 1.5)
+                make.bottom.equalToSuperview().offset(-LAYOUT_MIN_UNIT)
+            }
         }
     }
     

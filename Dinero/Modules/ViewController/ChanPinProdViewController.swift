@@ -161,7 +161,7 @@ class ChanPinProdViewController: BasicViewController, AutoHiddenNavigationBar {
         
         self.dayViwls.snp.makeConstraints { make in
             make.left.equalToSuperview()
-            make.top.equalTo(self.amounswjLab.snp.bottom).offset(LAYOUT_MIN_UNIT * 10)
+            make.top.equalToSuperview().offset((jk_kScreenW - LAYOUT_MIN_UNIT * 6) * 0.336)
         }
         
         self.rateViwls.snp.makeConstraints { make in

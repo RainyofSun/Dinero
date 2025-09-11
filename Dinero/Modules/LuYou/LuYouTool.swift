@@ -25,16 +25,16 @@ class LuYouTool: NSObject {
             if url.contains(APP_SETTING) {
                 top_saw?.navigationController?.pushViewController(SettingkowlsViewController(), animated: true)
             } else if url.contains(APP_HOME) {
-                top_saw?.navigationController?.popToRootViewController(animated: true)
                 _root_vc.selectedIndex = .zero
+                top_saw?.navigationController?.popToRootViewController(animated: true)
             } else if url.contains(APP_LOGIN) {
                 let logsjNac: BasicNavigationViewController = BasicNavigationViewController(rootViewController: LogiscskViewController())
                 logsjNac.modalPresentationStyle = .overFullScreen
                 top_saw?.present(logsjNac, animated: true)
                 top_saw?.navigationController?.popToRootViewController(animated: false)
             } else if url.contains(APP_ORDER) {
-                top_saw?.navigationController?.popToRootViewController(animated: false)
                 _root_vc.selectedIndex = 1
+                top_saw?.navigationController?.popToRootViewController(animated: false)
             } else if url.contains(APP_PRODUCT) {
                 top_saw?.navigationController?.pushViewController(ChanPinProdViewController(withCommodityIDNumber: self.pseparationURLParameter(url: url)), animated: true)
             } else if url.contains(APP_Order_list) {

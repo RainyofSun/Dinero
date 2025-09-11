@@ -37,6 +37,8 @@ class OrderLiswkOpwksuTableViewCell: UITableViewCell {
         return view
     }()
     
+    private var julsl_wiskk: String?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -49,6 +51,8 @@ class OrderLiswkOpwksuTableViewCell: UITableViewCell {
         self.grentidView.addSubview(self.textskContenSkwl)
         self.grentidView.addSubview(self.conspeBtn)
         self.grentidView.addSubview(self.protocolBtn)
+        
+        self.protocolBtn.addTarget(self, action: #selector(cliskwoUrlSwj(sender: )), for: UIControl.Event.touchUpInside)
         
         self.grentidView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 4)
@@ -66,18 +70,6 @@ class OrderLiswkOpwksuTableViewCell: UITableViewCell {
             make.height.equalTo(34)
             make.width.greaterThanOrEqualTo(130)
         }
-        
-        self.textskContenSkwl.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 2)
-            make.top.equalTo(self.chanPinView.snp.bottom).offset(LAYOUT_MIN_UNIT * 2)
-            make.height.greaterThanOrEqualTo(100)
-        }
-        
-        self.protocolBtn.snp.makeConstraints { make in
-            make.right.equalTo(self.textskContenSkwl)
-            make.top.equalTo(self.textskContenSkwl.snp.bottom).offset(LAYOUT_MIN_UNIT * 3)
-            make.bottom.equalToSuperview().offset(-LAYOUT_MIN_UNIT * 3)
-        }
     }
     
     required init?(coder: NSCoder) {
@@ -85,6 +77,8 @@ class OrderLiswkOpwksuTableViewCell: UITableViewCell {
     }
     
     func refskrmOrdslwCellmodls(modls: OrderTransition) {
+        self.julsl_wiskk = modls.appear
+        
         if let _ur_t = modls.jhr {
             self.chanPinView.setProducsImgUrl(url: _ur_t, logoName: modls.pmc, textFont: UIFont.interFont(size: 14, fontStyle: InterFontWeight.Medium))
         }
@@ -95,15 +89,42 @@ class OrderLiswkOpwksuTableViewCell: UITableViewCell {
             self.buildItemswlaiehd(models: _mskw)
         }
         
-        if let _p = modls.exempt {
+        if let _p = modls.exempt, !_p.isEmpty {
             self.protocolBtn.isHidden = false
             var att = NSAttributedString(string: _p, attributes: [.foregroundColor: Primary_Color1, .font: UIFont.interFont(size: 14, fontStyle: InterFontWeight.Medium)])
             att = att.jk.setSpecificRangeUnderLine(color: Primary_Color1, range: NSRange(location: .zero, length: _p.count))
             self.protocolBtn.setAttributedTitle(att, for: UIControl.State.normal)
             
+            self.textskContenSkwl.snp.remakeConstraints { make in
+                make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 2)
+                make.top.equalTo(self.chanPinView.snp.bottom).offset(LAYOUT_MIN_UNIT * 2)
+                make.height.greaterThanOrEqualTo(100)
+            }
+            
+            self.protocolBtn.snp.remakeConstraints { make in
+                make.right.equalTo(self.textskContenSkwl)
+                make.top.equalTo(self.textskContenSkwl.snp.bottom).offset(LAYOUT_MIN_UNIT * 3)
+                make.bottom.equalToSuperview().offset(-LAYOUT_MIN_UNIT * 3)
+            }
+            
         } else {
             self.protocolBtn.isHidden = true
+            
+            self.textskContenSkwl.snp.remakeConstraints { make in
+                make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 2)
+                make.top.equalTo(self.chanPinView.snp.bottom).offset(LAYOUT_MIN_UNIT * 2)
+                make.height.greaterThanOrEqualTo(100)
+                make.bottom.equalToSuperview().offset(-LAYOUT_MIN_UNIT * 3)
+            }
         }
+    }
+    
+    @objc func cliskwoUrlSwj(sender: UIButton) {
+        guard let _jsuw = self.julsl_wiskk, !_jsuw.isEmpty else {
+            return
+        }
+        
+        LuYouTool.shared.gotoPage(pageUrl: _jsuw, backtoRoot: false)
     }
 }
 

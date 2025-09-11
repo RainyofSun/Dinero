@@ -111,6 +111,14 @@ extension OrderLiswkOpwksumdiViewController: UITableViewDelegate, UITableViewDat
         
         return _cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let _swkks = self.list_skwmnfue[indexPath.row].committed else {
+            return
+        }
+        
+        LuYouTool.shared.gotoPage(pageUrl: _swkks, backtoRoot: false)
+    }
 }
 
 extension OrderLiswkOpwksumdiViewController: EmptyDataSetDelegate, EmptyDataSetSource {

@@ -28,11 +28,6 @@ class AuthBasicViewController: BasicViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewIsAppearing(_ animated: Bool) {
-        super.viewIsAppearing(animated)
-        self.pageNetRequest()
-    }
-    
     override func buildPageUI() {
         super.buildPageUI()
         
@@ -41,6 +36,8 @@ class AuthBasicViewController: BasicViewController {
         
         self.view.addSubview(self.bottomsViwe)
         self.bottomsViwe.addSubview(self.confirmBtn)
+        
+        self.pageNetRequest()
     }
     
     override func layoutPageViews() {

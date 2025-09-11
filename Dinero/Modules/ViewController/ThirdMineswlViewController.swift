@@ -28,11 +28,6 @@ class ThirdMineswlViewController: BasicViewController {
     
     private var _source: [MineTransition] = []
     
-    override func viewIsAppearing(_ animated: Bool) {
-        super.viewIsAppearing(animated)
-        self.basicScrollContentView.refresh(begin: true)
-    }
-    
     override func buildPageUI() {
         super.buildPageUI()
         
@@ -56,6 +51,8 @@ class ThirdMineswlViewController: BasicViewController {
         }
         
         GlobalCommonFile.shared.addObserver(self, forKeyPath: LOGIN_OBERVER_KEY, context: nil)
+        
+        self.basicScrollContentView.refresh(begin: true)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

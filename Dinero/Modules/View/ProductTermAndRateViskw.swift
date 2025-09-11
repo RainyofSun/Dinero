@@ -24,11 +24,17 @@ class ProductTermAndRateViskw: UIView {
         self.jk.addShadow(shadowColor: UIColor.hexStringColor(hexString: "#D4778D", alpha: 0.5), shadowOffset: CGSize(width: 0, height: 4), shadowOpacity: 4)
         
         self.addSubview(self.consjakwiLab)
-        self.consjakwiLab.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 2)
-            make.verticalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 3)
+        if UIDevice.jk.isIpad() || jk_kScreenW <= 414 {
+            self.consjakwiLab.snp.makeConstraints { make in
+                make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 2)
+                make.verticalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT)
+            }
+        } else {
+            self.consjakwiLab.snp.makeConstraints { make in
+                make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 2)
+                make.verticalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 3)
+            }
         }
-        
     }
     
     required init?(coder: NSCoder) {
