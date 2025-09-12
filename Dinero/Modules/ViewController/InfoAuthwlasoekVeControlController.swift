@@ -185,7 +185,22 @@ extension InfoAuthwlasoekVeControlController: InfoUnitProtoslwpProtocl {
         }
         
         if itemiessww.renzhensjakwStyle == .RZ_City {
-            
+            let citysw = CitySwjsuwjPoswjsVuews(frame: UIScreen.main.bounds)
+            UIDevice.current.keyWindow().addSubview(citysw)
+            citysw.showPresent()
+            citysw.clickConfirmClosure = {[weak self] (popViw: BasicPresentView, sender: APPActivityButton) in
+                guard let _posp = popViw as? CitySwjsuwjPoswjsVuews else {
+                    return
+                }
+                
+                if let _k = itemiessww.unttisTupe?.cacheKeu {
+                    self?.infosw_paswka[_k] = _posp.selec_si_city.replacingOccurrences(of: " ", with: "")
+                }
+                
+                itemiessww.reloaskwTiels(titles: nil, inspwText: _posp.selec_si_city)
+                
+                _posp.dismissPop()
+            }
         }
         
         if itemiessww.renzhensjakwStyle == .RZ_Time {

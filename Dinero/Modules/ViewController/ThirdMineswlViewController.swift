@@ -135,21 +135,8 @@ extension ThirdMineswlViewController: UICollectionViewDelegateFlowLayout, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if let _url = self._source[indexPath.item].claude {
-//            LuYouTool.shared.gotoPage(pageUrl: _url, backtoRoot: true)
-//        }
-        
-        let citysw = CitySwjsuwjPoswjsVuews(frame: UIScreen.main.bounds)
-        UIDevice.current.keyWindow().addSubview(citysw)
-        citysw.showPresent()
-        citysw.clickConfirmClosure = {(popViw: BasicPresentView, sender: APPActivityButton) in
-            guard let _posp = popViw as? CitySwjsuwjPoswjsVuews else {
-                return
-            }
-            
-            APPCocoaLog.debug(" ------- \(_posp.selec_si_city) ------")
-            
-            _posp.dismissPop()
+        if let _url = self._source[indexPath.item].claude {
+            LuYouTool.shared.gotoPage(pageUrl: _url, backtoRoot: true)
         }
     }
 }

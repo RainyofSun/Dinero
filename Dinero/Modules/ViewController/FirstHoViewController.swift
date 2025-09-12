@@ -151,7 +151,7 @@ class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
     
     func catchsCityListw() {
         APPNetRequestManager.afnReqeustType(NetworkRequestConfig.defaultRequestConfig("v3/certify/city-init", requestParams: [:])) {(task: URLSessionDataTask, res: APPSuccessResponse) in
-            guard let _json_dict = res.jsonDict as? NSDictionary, let _json = _json_dict.modelToJSONString() else {
+            guard let _json_arras = res.jsonArray as? NSArray, let _json = _json_arras.modelToJSONString() else {
                 return
             }
             

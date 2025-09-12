@@ -62,8 +62,8 @@ class CitySwjsuwjPoswjsVuews: BasicPresentView {
         
         self.titleLab.text = APPLanguageInsTool.loadLanguage("address_tip")
         
-        self.provensiwname.tag = 1001
-        self.cisrjwtableView.tag = 1002
+        self.provensiwname.tag = 1000
+        self.citysanwakw.tag = 1001
         
         self.provensiwname.addTarget(self, action: #selector(swicthhsowkScrollwks(sender: )), for: UIControl.Event.touchUpInside)
         self.citysanwakw.addTarget(self, action: #selector(swicthhsowkScrollwks(sender: )), for: UIControl.Event.touchUpInside)
@@ -76,7 +76,7 @@ class CitySwjsuwjPoswjsVuews: BasicPresentView {
         self.cisrjwtableView.register(CisyeyPisnkerTableViewCell.self, forCellReuseIdentifier: CisyeyPisnkerTableViewCell.className())
         
         self.contentView.addSubview(self.provensiwname)
-        self.contentView.addSubview(self.cisrjwtableView)
+        self.contentView.addSubview(self.citysanwakw)
         self.contentView.addSubview(self.sdakwline)
         self.contentView.addSubview(self.hSceolView)
         self.hSceolView.addSubview(self.prosbiwntableView)
@@ -99,19 +99,20 @@ class CitySwjsuwjPoswjsVuews: BasicPresentView {
             make.left.equalTo(self.titleLab)
         }
         
-        self.cisrjwtableView.snp.makeConstraints { make in
-            make.top.equalTo(self.provensiwname.snp.bottom).offset(LAYOUT_MIN_UNIT * 4.5)
+        self.citysanwakw.snp.makeConstraints { make in
+            make.top.equalTo(self.provensiwname.snp.bottom).offset(LAYOUT_MIN_UNIT * 2.5)
             make.left.equalTo(self.provensiwname)
         }
         
         self.sdakwline.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(LAYOUT_MIN_UNIT * 4)
-            make.top.equalTo(self.cisrjwtableView.snp.bottom).offset(LAYOUT_MIN_UNIT * 4)
+            make.top.equalTo(self.citysanwakw.snp.bottom).offset(LAYOUT_MIN_UNIT * 4)
         }
         
         self.hSceolView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview()
             make.top.equalTo(self.sdakwline.snp.bottom).offset(LAYOUT_MIN_UNIT * 3)
+            make.height.greaterThanOrEqualTo(250)
             make.bottom.equalTo(self.confirmBtn.snp.top).offset(-LAYOUT_MIN_UNIT * 3)
         }
         
