@@ -73,15 +73,4 @@ let LOGIN_OBERVER_KEY: String = "userHasLogin"
         self.appLoginInfo = nil
         APPInfomationCache.loginInfomationSaveToDisk(nil)
     }
-    
-    /// 保存认证信息完成状态
-    func saskkauthCompleteSuuwol() {
-        UserDefaults.standard.setValue(true, forKey: "auth_complete")
-        UserDefaults.standard.synchronize()
-    }
-    
-    /// 认证信息是否完成
-    func authComplsiwkqqsu() -> Bool {
-        return UserDefaults.standard.bool(forKey: "auth_complete")
-    }
 }
