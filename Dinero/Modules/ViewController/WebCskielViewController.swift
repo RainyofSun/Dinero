@@ -15,6 +15,9 @@ class WebCskielViewController: APPWebController {
     override func hookMethodUI() {
         super.hookMethodUI()
         
+        self.fd_interactivePopDisabled = true
+        self.fd_prefersNavigationBarHidden = true
+        
         DeviceAuthorizationTool.authorization().requestDeviceLocation()
         self.view.backgroundColor = .white
         self.setProcessBarTrackColor(Primary_Color1, tintColor: Primary_Color2)
