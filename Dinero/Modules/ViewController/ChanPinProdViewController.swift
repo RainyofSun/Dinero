@@ -78,6 +78,9 @@ class ChanPinProdViewController: BasicViewController, AutoHiddenNavigationBar {
     override func buildPageUI() {
         super.buildPageUI()
         
+        self.fd_interactivePopDisabled = true
+        self.fd_prefersNavigationBarHidden = true
+        
         self.confirmBtn.addTarget(self, action: #selector(confirmApples(sender: )), for: UIControl.Event.touchUpInside)
         self.backBtn.addTarget(self, action: #selector(goback), for: UIControl.Event.touchUpInside)
         self.topImg.isUserInteractionEnabled = true

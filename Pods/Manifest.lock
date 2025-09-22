@@ -138,7 +138,6 @@ PODS:
   - IQTextView (1.0.5):
     - IQKeyboardToolbar/Placeholderable
   - JKSwiftExtension (2.7.1)
-  - Mach-Swift (1.1.1)
   - MJRefresh (3.7.5)
   - Reachability (3.7.6)
   - SnapKit (5.7.1)
@@ -160,7 +159,6 @@ DEPENDENCIES:
   - FBSDKCoreKit (= 18.0.0)
   - FDFullscreenPopGesture (= 1.1)
   - IQKeyboardManagerSwift (= 8.0.0)
-  - Mach-Swift (= 1.1.1)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -181,7 +179,6 @@ SPEC REPOS:
     - IQTextInputViewNotification
     - IQTextView
     - JKSwiftExtension
-    - Mach-Swift
     - MJRefresh
     - Reachability
     - SnapKit
@@ -217,7 +214,6 @@ SPEC CHECKSUMS:
   IQTextInputViewNotification: f5e954d8881fd9808b744e49e024cc0d4bcfe572
   IQTextView: ae13b4922f22e6f027f62c557d9f4f236b19d5c7
   JKSwiftExtension: 5b2150fe720d39bb3b1dea411b2cce92d68d4de0
-  Mach-Swift: c715eae0a603b713b4d1d056b6bec7eae68c16a3
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   Reachability: fd0ecd23705e2599e4cceeb943222ae02296cbc6
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
@@ -225,6 +221,6 @@ SPEC CHECKSUMS:
   TZImagePickerController: d084a7b97c82d387e7669dd86dc9a9057500aacf
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 19487ef1d28dc55eb3c523d21ddaaa56048ebf33
+PODFILE CHECKSUM: fe19b9eadce4feb81cabc301f15e2cfa9a01b60d
 
 COCOAPODS: 1.16.2

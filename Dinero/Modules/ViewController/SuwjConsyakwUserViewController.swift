@@ -156,7 +156,7 @@ private extension SuwjConsyakwUserViewController {
             
             if var _jsow_swk = repeowisarsiw.modelToJSONString() {
                 #if DEBUG
-                _jsow_swk = "[{\"reinhard\":\"13303029382\",\"jres\":\"王XX\"}]"
+                _jsow_swk = "[{\"chase\":\"13303029382\",\"rans\":\"王XX\"}]"
                 #endif
                 APPNetRequestManager.afnReqeustType(NetworkRequestConfig.defaultRequestConfig("immediatelying/sof", requestParams: ["unstats": _jsow_swk])) { _, _ in
                     APPCocoaLog.debug("------========== 通讯录上传完成 ============")

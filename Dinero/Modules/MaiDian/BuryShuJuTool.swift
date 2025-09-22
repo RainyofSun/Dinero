@@ -131,7 +131,7 @@ class BuryShuJuTool: NSObject {
     class func riskControlRepoeri(type: TongJiEventUploadStyle, beginTime: String? = nil, endTime: String? = nil, order_numb: String? = nil) {
         var pppp: [String: String] = ["dependence":type.rawValue]
 
-        if let _id = GlobalCommonFile.shared.home_commodity_id {
+        if let _id = GlobalCommonFile.shared.productID {
             pppp["institute"] = _id
         }
         
@@ -155,6 +155,7 @@ class BuryShuJuTool: NSObject {
     
         pppp["dominance"] = UIDevice.current.readIDFVFormKeyChain()
         
+        APPCocoaLog.debug("数据上报参数 ==== ====== \(pppp) \n ==========")
         APPNetRequestManager.afnReqeustType(NetworkRequestConfig.defaultRequestConfig("immediatelying/claude", requestParams: pppp)) { _, _ in
             
         }

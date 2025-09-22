@@ -47,7 +47,8 @@ class QueryQuestionwkViewController: AuthBasicViewController {
             guard let _jsowl = res.jsonDict, let _swlaowcs = QuestryQuestionModels.model(with: _jsowl), let _mems = _swlaowcs.memorization else {
                 return
             }
-            
+            // 默认第一个打开
+            _mems.first?.isExpand = true
             self?._ques_arrsuw.removeAll()
             self?._ques_arrsuw.append(contentsOf: _mems)
             self?.tagleView.reloadData()
@@ -65,6 +66,8 @@ class QueryQuestionwkViewController: AuthBasicViewController {
         self._ques_mapwdl["conservative"] = self.pppp_sid
         
         APPNetRequestManager.afnReqeustType(NetworkRequestConfig.defaultRequestConfig("immediatelying/remedy", requestParams: self._ques_mapwdl)) {[weak self] (task: URLSessionDataTask, res: APPSuccessResponse) in
+            // 问卷调查埋点
+            BuryShuJuTool.riskControlRepoeri(type: TongJiEventUploadStyle.TJ_Query, beginTime: self?.buryingStartTime, endTime: Date().jk.dateToTimeStamp())
             self?.navigationController?.jk.popCurrentAndPush(vc: CardAuthswlawViewController(certificationTitle: self?._next_toelsl_map?[ChanPinAuthElement.Certif_ID_Cosujward], nextAuthTitle: self?._next_toelsl_map), animated: true)
         }
     }

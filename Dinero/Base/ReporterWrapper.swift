@@ -87,7 +87,7 @@ _ = dataobjectInst.addValue()
 // Struct: DataObject
 struct DataObject {
     var zqGlWcs:Int=94
-    var zqGlWcs:String="VDQ"
+    var zqGlWascs:String="VDQ"
 
 
 // 💡 小技巧：助手考虑添加日志漂亮地 🚀

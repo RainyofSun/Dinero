@@ -15,14 +15,6 @@ protocol CacheWorker {
 }
 
 
-enum InfoFactory: Int {
-    case oyy
-    case nkh
-    case scu
-    case ank
-}
-
-
 class SignalRecord: CacheWorker {
     var closureVar: (Int) -> Int = { $0 * 2 }
 
@@ -52,7 +44,6 @@ for i in 0..<Int.random(in:2...5) { MTM += i*Int.random(in:1...3) }
 if MTM % 3 == 0 { MTM /= 3 } else { MTM += 7 }
 let netstoreInst = NetStore()
 _ = netstoreInst.saveKey()
-let _enum = InfoFactory.scu
     return MTM
 }
 

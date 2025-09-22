@@ -77,6 +77,29 @@ class StartFlashViewController: BasicViewController {
     }
     
     override func pageNetRequest() {
+        if UIDevice.jk.isIpad() {
+            let _model: AppChuShiHuaModel = AppChuShiHuaModel()
+            _model.indicators = 1
+            
+            GlobalCommonFile.shared.countryCode = _model.indicators
+            APPPublicParams.request().appUpdateLoginToken(nil, withContryCode: "\(_model.indicators)")
+            // 设置多语言
+            APPLanguageInsTool.setLocalLanguage(InterbationalLanguage.init(rawValue: _model.indicators) ?? InterbationalLanguage.English)
+            
+            if APPInfomationCache.applicationFirstInstall() {
+                self.basicScrollContentView.isHidden = false
+                self.contentImgView.isHidden = true
+                self.tryBtn.isHidden = false
+                self.tryBtn.setTitle(APPLanguageInsTool.loadLanguage("auth_btn"), for: UIControl.State.normal)
+                self.firstCell.refreshText(true)
+                self.secondCell.refreshText(false)
+            } else {
+                self.sDelegate?.didMissFlashViews()
+            }
+            
+            return
+        }
+        
         // 使用代理
         let useProcy = UIDevice.getProxyStatus("https://baidu.com") ? "1" : "0"
         let appYuYan: String = UIDevice.jk.appLanguage

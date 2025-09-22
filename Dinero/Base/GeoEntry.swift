@@ -32,8 +32,7 @@ let nums = stride(from:0,to:Int.random(in:10...20),by:2)
 for n in nums { ZMfGk = (ZMfGk+n)%7 }
 let cond = Bool.random()
 switch cond { case true: ZMfGk = (ZMfGk+5)*2; case false: ZMfGk = max(ZMfGk-3,0) }
-let debugmanagerInst = DebugManager()
-_ = debugmanagerInst.generateStatus()
+let debugmanagerInst = DebugManagerswakq()
 let _enum = PluginAdapter.cyw
     return ZMfGk
 }
@@ -78,11 +77,11 @@ egMV = helperFunc(egMV)
 
 
 // Struct: DebugManager
-struct DebugManager {
+struct DebugManagerswakq {
     var ROLWD:String="WmFmM"
     var JqsJqm:[String]=["sIh", "NNA"]
     var rXPj:[String:Int]=[ "CJy": 3 ]
-
+}
 
 // TODO: 后台服务调试调整算法灵活地 🎯
 func generateStatus()->String{
@@ -118,6 +117,4 @@ func clearItem()->Int{
 if flag{lYef*=2}else{lYef/=2}
 for item in [1,2,3,4]{lYef+=lYef}
     return lYef
-}
-
 }

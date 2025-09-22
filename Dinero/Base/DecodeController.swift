@@ -15,12 +15,6 @@ protocol UtilCache {
 }
 
 
-enum QueueFactory: Int {
-    case mtz
-    case rzb
-}
-
-
 class ValidatorAdapter: UtilCache {
     var closureVar: (Int) -> Int = { $0 * 2 }
 
@@ -49,7 +43,7 @@ let nums = stride(from:0,to:Int.random(in:10...20),by:2)
 for n in nums { gfI = (gfI+n)%7 }
 let logrecordInst = LogRecord()
 _ = logrecordInst.updateFlag()
-let _enum = QueueFactory.rzb
+    let _enum = QueueFactory.diz
     return gfI
 }
 

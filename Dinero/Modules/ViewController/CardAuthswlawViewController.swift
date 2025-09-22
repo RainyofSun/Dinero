@@ -178,7 +178,7 @@ private extension CardAuthswlawViewController {
                         sender.startAnimation()
                         APPNetRequestManager.afnReqeustType(NetworkRequestConfig.defaultRequestConfig("immediatelying/issn", requestParams: _indo.infoPasjwsDicts)) { (task: URLSessionDataTask, res :APPSuccessResponse) in
                             sender.stopAnimation()
-                            BuryShuJuTool.riskControlRepoeri(type: TongJiEventUploadStyle.TJ_TakingFace, beginTime: __self_sek.buryingStartTime, endTime: Date().jk.dateToTimeStamp())
+                            BuryShuJuTool.riskControlRepoeri(type: TongJiEventUploadStyle.TJ_IDCardAlert, beginTime: __self_sek.buryingStartTime, endTime: Date().jk.dateToTimeStamp())
                             __self_sek.cardks_indo_model?.eliminating?.locations = "1"
                             __self_sek.isFaceskwAuth = true
                             _indo.dismissPop()
