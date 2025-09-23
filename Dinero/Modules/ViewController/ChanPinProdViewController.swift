@@ -13,7 +13,8 @@ class ChanPinProdViewController: BasicViewController, AutoHiddenNavigationBar {
     private lazy var topImg: UIImageView = UIImageView(image: UIImage(named: "msine"))
     private lazy var backBtn: UIButton = {
         let view = UIButton(type: UIButton.ButtonType.custom)
-        let originalImage = UIImage(systemName: "chevron.backward")
+        let config = UIImage.SymbolConfiguration(pointSize: 22, weight: .regular)
+        let originalImage = UIImage(systemName: "chevron.backward", withConfiguration: config)
         let tintedImage = originalImage?.withTintColor(UIColor.hexStringColor(hexString: "#27272E"), renderingMode: .alwaysOriginal)
         view.setImage(tintedImage, for: UIControl.State.normal)
         return view
@@ -92,8 +93,6 @@ class ChanPinProdViewController: BasicViewController, AutoHiddenNavigationBar {
         self.contentVIew.register(ChanPinAuejwlInuejdCollectionViewCell.self, forCellWithReuseIdentifier: ChanPinAuejwlInuejdCollectionViewCell.className())
         
         self.basicScrollContentView.addSubview(self.topImg)
-        self.topImg.addSubview(self.backBtn)
-        self.topImg.addSubview(self.titleLsjwk)
         self.topImg.addSubview(self.skwldPrisn)
         self.topImg.addSubview(self.infoImsVIes)
         self.infoImsVIes.addSubview(self.tipswkLab)
@@ -105,6 +104,8 @@ class ChanPinProdViewController: BasicViewController, AutoHiddenNavigationBar {
         self.view.addSubview(self.bottomsViwe)
         self.bottomsViwe.addSubview(self.protocolView)
         self.bottomsViwe.addSubview(self.confirmBtn)
+        self.view.addSubview(self.backBtn)
+        self.view.addSubview(self.titleLsjwk)
         
         self.basicScrollContentView.addMJRefresh {[weak self] _ in
             self?.pageNetRequest()
@@ -132,7 +133,7 @@ class ChanPinProdViewController: BasicViewController, AutoHiddenNavigationBar {
         self.backBtn.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(LAYOUT_MIN_UNIT * 4.5)
             make.top.equalToSuperview().offset(jk_kStatusBarFrameH + LAYOUT_MIN_UNIT * 2)
-            make.size.equalTo(25)
+            make.size.equalTo(40)
         }
         
         self.titleLsjwk.snp.makeConstraints { make in
@@ -142,7 +143,7 @@ class ChanPinProdViewController: BasicViewController, AutoHiddenNavigationBar {
         
         self.skwldPrisn.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(LAYOUT_MIN_UNIT * 3)
-            make.top.equalTo(self.titleLsjwk.snp.bottom).offset(LAYOUT_MIN_UNIT * 3)
+            make.top.equalToSuperview().offset(jk_kStatusBarFrameH + LAYOUT_MIN_UNIT * 12)
             make.width.equalTo(jk_kScreenW - LAYOUT_MIN_UNIT * 6)
         }
         
@@ -219,7 +220,7 @@ class ChanPinProdViewController: BasicViewController, AutoHiddenNavigationBar {
             
             if let _p = _swkModel.aarp?.gendered, !_p.isEmpty {
                 self?.protocolView.isHidden = false
-                self?.protocolView.setProtocol(NSAttributedString(string: APPLanguageInsTool.loadLanguage("cancel_priss"), attributes: [.foregroundColor: UIColor.hexStringColor(hexString: "#666666"), .font: UIFont.systemFont(ofSize: 16)]), protocolPrefix: NSAttributedString(string: _p, attributes: [.foregroundColor: Primary_Color1, .font: UIFont.systemFont(ofSize: 14)]), defaultSelected: false)
+                self?.protocolView.setProtocol(NSAttributedString(string: "<\(_p)>", attributes: [.foregroundColor: Primary_Color1, .font: UIFont.systemFont(ofSize: 14)]), protocolPrefix: NSAttributedString(string: APPLanguageInsTool.loadLanguage("login_privicy"), attributes: [.foregroundColor: UIColor.hexStringColor(hexString: "#666666"), .font: UIFont.systemFont(ofSize: 16)]), defaultSelected: true)
                 self?.protxost_tesat = _swkModel.aarp?.speed
                 
                 self?.confirmBtn.snp.makeConstraints { make in

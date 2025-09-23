@@ -61,6 +61,6 @@ class AuthBasicViewController: BasicViewController {
     }
     
     @objc func clickNextBusjwk(sender: APPActivityButton) {
-        
+        self.refreshMineLocations()
     }
 }

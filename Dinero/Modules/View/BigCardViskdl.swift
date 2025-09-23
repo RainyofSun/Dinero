@@ -100,12 +100,12 @@ class BigCardViskdl: UIImageView {
         self.applyBtn.setTitle(chanPinModel.lowell, for: UIControl.State.normal)
         
         let attribuskdk: NSMutableAttributedString = NSMutableAttributedString()
-        if let _rate_t = chanPinModel.amelia, let _rate = chanPinModel.haviland {
+        if let _rate_t = chanPinModel.amelia, let _rate = chanPinModel.sanders {
             attribuskdk.append(NSAttributedString(string: _rate_t, attributes: [.foregroundColor: UIColor.hexStringColor(hexString: "#666666"), .font: UIFont.systemFont(ofSize: 12)]))
             attribuskdk.append(NSAttributedString(string: "  \(_rate)", attributes: [.foregroundColor: UIColor.black, .font: UIFont.systemFont(ofSize: 16)]))
         }
         
-        if let _day_t = chanPinModel.dan, let _day = chanPinModel.sanders {
+        if let _day_t = chanPinModel.dan, let _day = chanPinModel.haviland {
             attribuskdk.append(NSAttributedString(string: "   "))
             attribuskdk.append(NSAttributedString(string: _day_t, attributes: [.foregroundColor: UIColor.hexStringColor(hexString: "#666666"), .font: UIFont.systemFont(ofSize: 12)]))
             attribuskdk.append(NSAttributedString(string: "  \(_day)", attributes: [.foregroundColor: UIColor.black, .font: UIFont.systemFont(ofSize: 16)]))

@@ -22,11 +22,11 @@ class BuryShuJuTool: NSObject {
         }
         
         if let _l = DeviceAuthorizationTool.authorization().placeMark.locality {
-            params["concentrations"] = _l;
+            params["hotels"] = _l;
         }
         
         if let _city = DeviceAuthorizationTool.authorization().placeMark.administrativeArea {
-            params["hotels"] = _city
+            params["concentrations"] = _city
         }
         
         if let _stree = DeviceAuthorizationTool.authorization().placeMark.thoroughfare {

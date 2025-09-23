@@ -162,12 +162,20 @@ class StartFlashViewController: BasicViewController {
     }
     
     @objc func wangluoBianChange(sender: NSNotification) {
-        if let _net_state = sender.object as? DeviceNetObserver.NetworkStatus, _net_state != .NetworkStatus_NoNet, APPInfomationCache.applicationFirstInstall() {
-            // 第一次安装时，等到网络授权之后，再重新请求初始化
-            self.pageNetRequest()
-            // 关闭网络探测
-            DeviceNetObserver.shared.StopNetworkObserverListener()
-            NotificationCenter.default.removeObserver(self)
+        guard let _net_state = sender.object as? DeviceNetObserver.NetworkStatus else {
+            return
+        }
+        
+        if _net_state == .NetworkStatus_NoNet || _net_state == .NetworkStatus_LTE {
+            self.view.makeToast(APPLanguageInsTool.loadLanguage("neiw_tswp"))
+        } else {
+            if APPInfomationCache.applicationFirstInstall() {
+                // 第一次安装时，等到网络授权之后，再重新请求初始化
+                self.pageNetRequest()
+                // 关闭网络探测
+                DeviceNetObserver.shared.StopNetworkObserverListener()
+                NotificationCenter.default.removeObserver(self)
+            }
         }
     }
 }

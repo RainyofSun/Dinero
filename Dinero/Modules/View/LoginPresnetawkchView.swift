@@ -76,11 +76,20 @@ class LoginPresnetawkchView: BasicPresentView {
         self.contentView.addSubview(self.voiceCodeBtn)
         self.contentView.addSubview(self.yinSiView)
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: {
-            if self.phoneTefiled.canBecomeFirstResponder {
-                self.phoneTefiled.becomeFirstResponder()
-            }
-        })
+        if let _t = UserDefaults.standard.string(forKey: "userPhone") {
+            self.phoneTefiled.text = _t
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6, execute: {
+                if self.codeTefiled.canBecomeFirstResponder {
+                    self.codeTefiled.becomeFirstResponder()
+                }
+            })
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6, execute: {
+                if self.phoneTefiled.canBecomeFirstResponder {
+                    self.phoneTefiled.becomeFirstResponder()
+                }
+            })
+        }
     }
     
     override func layoutPresentView() {
@@ -185,6 +194,7 @@ class LoginPresnetawkchView: BasicPresentView {
             sender.isEnabled = true
             self?.hideToastActivity()
             sender.start()
+            self?.makeToast(res.responseMsg ?? "")
             
             if let _can = self?.codeTefiled.canBecomeFirstResponder, _can {
                 self?.codeTefiled.becomeFirstResponder()
@@ -237,7 +247,7 @@ extension LoginPresnetawkchView: UITextFieldDelegate {
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
         
         // 最大长度限制为 10
-        let maxLength = 6
+        let maxLength = 22
         return updatedText.count <= maxLength
     }
 }

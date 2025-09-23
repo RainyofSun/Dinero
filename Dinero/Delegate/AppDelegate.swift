@@ -7,6 +7,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import IQKeyboardToolbarManager
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         IQKeyboardManager.shared.isEnabled = true
         IQKeyboardManager.shared.resignOnTouchOutside = true
+        // 显示 done 按钮
+        IQKeyboardToolbarManager.shared.toolbarConfiguration.doneBarButtonConfiguration = IQBarButtonItemConfiguration(title: "Done")
+        IQKeyboardToolbarManager.shared.toolbarConfiguration.manageBehavior = .byTag
+        IQKeyboardToolbarManager.shared.toolbarConfiguration.previousNextDisplayMode = .alwaysHide
+        IQKeyboardToolbarManager.shared.enabledToolbarClasses.append(LogiscskViewController.self)
+        IQKeyboardToolbarManager.shared.enabledToolbarClasses.append(InfoAuthwlasoekVeControlController.self)
+        
         return true
     }
 

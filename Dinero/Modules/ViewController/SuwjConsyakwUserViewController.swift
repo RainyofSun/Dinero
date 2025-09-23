@@ -151,6 +151,8 @@ private extension SuwjConsyakwUserViewController {
                     psiwk.influenced = smwo
                 }
                 
+                psiwk.rans = item.fullName
+                
                 repeowisarsiw.append(psiwk)
             }
             

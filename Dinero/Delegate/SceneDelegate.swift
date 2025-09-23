@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         
-        APPNetRequestURLConfig.setNetworkDebugRequestURL("http://47.251.169.113/irectioner/", releaseUrl: "")
+        APPNetRequestURLConfig.setNetworkDebugRequestURL("http://47.251.169.113/irectioner/", releaseUrl: "http://47.251.169.113/irectioner/")
         APPNetResponseParsingConfig.setParsingConfig("tell", service: "org", data: "unstats")
         setNetRequestPublicParams()
         #if DEBUG

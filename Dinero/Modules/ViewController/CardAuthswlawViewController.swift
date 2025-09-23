@@ -157,6 +157,7 @@ private extension CardAuthswlawViewController {
             __self_sek.view.hideToastActivity()
             
             if __self_sek.isFaceskwAuth {
+                self?.refreshMineLocations()
                 BuryShuJuTool.riskControlRepoeri(type: TongJiEventUploadStyle.TJ_TakingFace, beginTime: __self_sek.buryingStartTime, endTime: Date().jk.dateToTimeStamp())
                 __self_sek.navigationController?.jk.popCurrentAndPush(vc: InfoAuthwlasoekVeControlController(certificationTitle: __self_sek._next_toelsl_map?[ChanPinAuthElement.Certif_Persopalsjnal_Inuywjfo], nextAuthTitle: __self_sek._next_toelsl_map, style: InfoAusekTywsStyle.PersonInskwAutsh), animated: true)
             } else {

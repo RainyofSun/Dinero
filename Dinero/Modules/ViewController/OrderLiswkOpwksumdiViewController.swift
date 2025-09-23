@@ -46,11 +46,11 @@ class OrderLiswkOpwksumdiViewController: BasicViewController {
             }
             
             if _id == "6" {
-                self.title = APPLanguageInsTool.loadLanguage("order_apply")
+                self.title = APPLanguageInsTool.loadLanguage("order_repay")
             }
             
             if _id == "7" {
-                self.title = APPLanguageInsTool.loadLanguage("order_repay")
+                self.title = APPLanguageInsTool.loadLanguage("order_apply")
             }
         }
         

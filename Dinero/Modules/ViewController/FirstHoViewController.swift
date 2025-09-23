@@ -19,9 +19,10 @@ class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
         super.viewWillAppear(animated)
         self.pageNetRequest()
     }
-//    4080513067
+    
     override func buildPageUI() {
         NotificationCenter.default.addObserver(self, selector: #selector(refreshHowmswl), name: NSNotification.Name.init("refreshHome"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(wangsluwoMeiswk(sender: )), name: NSNotification.Name(APPLICATION_NET_CHANGE), object: nil)
         super.buildPageUI()
         
         self.basicScrollContentView.isHidden = true
@@ -30,8 +31,6 @@ class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
         self.basicScrollContentView.addSubview(self.bigCard)
         self.view.addSubview(self.smallCard)
         self.changeTabBarBGColor(isClear: true)
-        // 城市列表
-        self.catchsCityListw()
     }
     
     override func layoutPageViews() {
@@ -81,6 +80,9 @@ class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
                 self?.smallCard.refreshSmallCardTopModel(chanPinModel: _sma_data, chanPinList: _model.cardDatas)
                 self?.layoutPageUI(isBig: false)
             }
+            
+            // 隐私地址
+            GlobalCommonFile.shared.privacyURL = _model.sdg
             
             self?.basicScrollContentView.isHidden = false
             self?._service_smd_mods = _model.maria
@@ -147,6 +149,18 @@ class FirstHoViewController: BasicViewController, AutoHiddenNavigationBar {
     
     @objc func refreshHowmswl() {
         self.pageNetRequest()
+    }
+    
+    @objc func wangsluwoMeiswk(sender: NSNotification) {
+        guard let _net_state = sender.object as? DeviceNetObserver.NetworkStatus else {
+            return
+        }
+        
+        if _net_state == .NetworkStatus_NoNet || _net_state == .NetworkStatus_LTE {
+            self.view.makeToast(APPLanguageInsTool.loadLanguage("neiw_tswp"))
+        } else {
+            self.pageNetRequest()
+        }
     }
     
     func catchsCityListw() {

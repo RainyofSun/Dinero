@@ -41,12 +41,12 @@ class SecondOrdViewController: BasicViewController {
         for i in 0..<3 {
             let item = MineTransition()
             if i == .zero {
-                item.maria = "order_repay"
-                item.gendered = APPLanguageInsTool.loadLanguage("order_repay")
-                item.claude = APP_Order_list + "?num=7"
-            } else if i == 1 {
                 item.maria = "order_img"
                 item.gendered = APPLanguageInsTool.loadLanguage("order_apply")
+                item.claude = APP_Order_list + "?num=7"
+            } else if i == 1 {
+                item.maria = "order_repay"
+                item.gendered = APPLanguageInsTool.loadLanguage("order_repay")
                 item.claude = APP_Order_list + "?num=6"
             } else {
                 item.maria = "order_com"

@@ -108,5 +108,15 @@ extension QueryQuestionwkViewController: QuestiosnCellProtocol {
         }
         
         APPCocoaLog.debug("====== 问卷调查 ========\n ===== \(self._ques_mapwdl) ======== \n")
+        
+        // 自动展开下一个
+        if indes.row + 1 >= self._ques_arrsuw.count {
+            return
+        }
+        
+        self._ques_arrsuw[indes.row + 1].isExpand = true
+        let targstw_ins: IndexPath = IndexPath(row: indes.row + 1, section: indes.section)
+        self.tagleView.reloadData()
+        self.tagleView.scroll(to: targstw_ins)
     }
 }
